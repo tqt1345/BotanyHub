@@ -3,5 +3,5 @@ module com.mycompany.botanyhub {
     requires javafx.fxml;
 
     opens com.mycompany.botanyhub to javafx.fxml;
-    exports com.tariqueturnbull.botanyhub;
+    exports com.mycompany.botanyhub;
 }
