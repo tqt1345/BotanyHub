@@ -1,4 +1,4 @@
-package com.mycompany.botanyhub;
+package com.tariqueturnbull.botanyhub;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

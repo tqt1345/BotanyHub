@@ -1,4 +1,4 @@
-package com.mycompany.botanyhub;
+package com.tariqueturnbull.botanyhub;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
