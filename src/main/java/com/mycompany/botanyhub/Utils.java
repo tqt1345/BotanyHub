@@ -2,6 +2,7 @@ package com.mycompany.botanyhub;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import User.*;
 
 public class Utils {
     public static class Text { // Various text and alert methods
@@ -27,4 +28,43 @@ public class Utils {
             }
         }
     } // END OF TEXT CLASS
+
+    public static class Validator {
+        public static boolean isValidUsername(String username) {
+            boolean isValid = true;
+
+            if (usernameExists(username)) {
+                isValid = false;
+            }
+            if (username.isEmpty()) {
+                isValid = false;
+            }
+            if (username.contains(" ")) {
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        public static boolean usernameExists(String usernameInput) {
+            boolean exists = false;
+            for (Customer customer : DataHandler.customers) {
+                String usernameInList = customer.getUsername();
+                if (usernameInput.equals(usernameInList)) {
+                    exists = true;
+                }
+            }
+            return exists;
+        }
+
+        public static boolean isValidPassword(String password) {
+            boolean isValid = true;
+            if (password.isEmpty()) {
+                isValid = false;
+            }
+            if (password.contains(" ")) {
+                isValid = false;
+            }
+            return isValid;
+        }
+    } // END OF VALIDATOR CLASS
 }

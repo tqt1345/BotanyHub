@@ -26,10 +26,10 @@
                <children>
                   <Label text="Username" />
                   <Label text="Password" GridPane.rowIndex="1" />
-                  <TextField promptText="Enter a username" GridPane.columnIndex="1" />
-                  <TextField promptText="Enter a password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="usernameField" promptText="Enter a username" GridPane.columnIndex="1" />
+                  <TextField fx:id="passwordField" promptText="Enter a password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" text="Submit" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#submitButton" text="Submit" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children></AnchorPane>

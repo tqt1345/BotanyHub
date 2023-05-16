@@ -27,7 +27,6 @@ public class App extends Application {
             System.out.println(e);
 
         }
-
     }
 
     static void setRoot(String fxml) throws IOException {
