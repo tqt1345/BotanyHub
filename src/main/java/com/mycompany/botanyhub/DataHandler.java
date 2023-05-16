@@ -1,5 +1,7 @@
 package com.mycompany.botanyhub;
 import User.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,6 +12,13 @@ import java.util.ArrayList;
 public class DataHandler {
    public static ArrayList<Customer> customers = new ArrayList<>();
    public static ArrayList<Administrator> administrators = new ArrayList<>();
+
+   public static User currentUser;
+   public static StringProperty currentUsername = new SimpleStringProperty();
+
+   public static void setCurrentUsername(String username) {
+      currentUsername.set(username);
+   }
 
    public static void saveData() {
       try {
@@ -45,6 +54,7 @@ public class DataHandler {
          saveData();
       }
    }
+
 
 
 }

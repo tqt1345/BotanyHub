@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -21,10 +22,15 @@ public class MainMenuController implements Initializable {
     /**
      * Initializes the controller class.
      */
+
+    @FXML private Label currentUserLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        currentUserLabel.textProperty().bind(DataHandler.currentUsername);
+    }
+
 
     @FXML private void switchToCreateAccount() throws IOException {
         App.setRoot("createAccount");
