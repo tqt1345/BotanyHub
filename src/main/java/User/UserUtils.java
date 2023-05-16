@@ -19,6 +19,10 @@ public class UserUtils {
         throw new Exception("Invalid username or password");
     }
 
+    public static void logout() {
+        DataHandler.setCurrentUser(null, "Not logged in");
+    }
+
     public static boolean usernameExists(String usernameInput) {
         boolean exists = false;
         for (User customer : DataHandler.customers) {

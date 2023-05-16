@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import User.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -41,13 +42,13 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML private void logoutButton() throws IOException {
-        if (DataHandler.currentUser != null) {
-            DataHandler.setCurrentUser(null, "Not logged in");
+        final boolean USER_LOGGED_IN = DataHandler.currentUser != null;
+        if (USER_LOGGED_IN) {
+            UserUtils.logout();
             Utils.Text.showConfirmation("Logout successful");
         } else {
             Utils.Text.showError("Can't logout: No user is logged in");
         }
-
     }
 
     @FXML private void switchToViewProducts() throws IOException {
