@@ -26,14 +26,14 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#switchToCreateAccount" text="Create Account" />
                   <Button mnemonicParsing="false" onAction="#switchToLogin" text="Login" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#switchToLogout" text="Logout" GridPane.columnIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#logoutButton" text="Logout" GridPane.columnIndex="2" />
                   <Button mnemonicParsing="false" onAction="#switchToViewProducts" text="View Products" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" onAction="#switchToViewCart" text="View Cart" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" onAction="#switchToViewPurchaseHistory" text="View Purchase History" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" onAction="#exitButton" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <Label fx:id="currentUserLabel" layoutX="465.0" layoutY="14.0" text="Logged in as" />
+            <Label fx:id="currentUserLabel" layoutX="431.0" layoutY="14.0" text="Logged in as" />
          </children></AnchorPane>
   </content>
 </TitledPane>

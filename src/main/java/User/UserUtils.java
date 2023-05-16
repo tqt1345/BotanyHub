@@ -5,6 +5,7 @@ import com.mycompany.botanyhub.DataHandler;
 import java.util.ArrayList;
 
 public class UserUtils {
+
     public static void login(String inputtedUsername, String inputtedPassword, ArrayList<? extends User> users) throws Exception {
         for (User user : users) {
             final String STORED_USERNAME = user.getUsername();
@@ -16,6 +17,28 @@ public class UserUtils {
             }
         }
         throw new Exception("Invalid username or password");
+    }
+
+    public static boolean usernameExists(String usernameInput) {
+        boolean exists = false;
+        for (User customer : DataHandler.customers) {
+            String usernameInList = customer.getUsername();
+            if (usernameInput.equals(usernameInList)) {
+                exists = true;
+            }
+        }
+        return exists;
+    }
+
+    public static boolean isValidPassword(String password) {
+        boolean isValid = true;
+        if (password.isEmpty()) {
+            isValid = false;
+        }
+        if (password.contains(" ")) {
+            isValid = false;
+        }
+        return isValid;
     }
 
     /*

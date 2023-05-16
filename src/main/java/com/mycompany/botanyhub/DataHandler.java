@@ -14,7 +14,7 @@ public class DataHandler {
    public static ArrayList<Administrator> administrators = new ArrayList<>();
 
    public static User currentUser;
-   public static StringProperty currentUsername = new SimpleStringProperty();
+   public static StringProperty currentUsername = new SimpleStringProperty("Current user: Not logged in");
 
    public static void setCurrentUsername(String username) {
       currentUsername.set(username);

@@ -40,8 +40,14 @@ public class MainMenuController implements Initializable {
         App.setRoot("login");
     }
 
-    @FXML private void switchToLogout() throws IOException {
-        App.setRoot("logout");
+    @FXML private void logoutButton() throws IOException {
+        if (DataHandler.currentUser != null) {
+            DataHandler.setCurrentUser(null, "Not logged in");
+            Utils.Text.showConfirmation("Logout successful");
+        } else {
+            Utils.Text.showError("Can't logout: No user is logged in");
+        }
+
     }
 
     @FXML private void switchToViewProducts() throws IOException {
