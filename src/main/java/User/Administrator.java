@@ -1,6 +1,8 @@
 package User;
 
-public class Administrator implements User{
+import java.io.Serializable;
+
+public class Administrator implements User, Serializable {
 
     private final AdminInformation adminInformation;
     public Administrator (String username, String password){
