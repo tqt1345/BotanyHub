@@ -27,16 +27,12 @@ public class LoginController implements Initializable {
     StringBuilder errorMessage;
 
     @FXML private void loginButton() {
+        final String USERNAME = usernameField.getText();
+        final String PASSWORD = passwordField.getText();
         try {
-
-            final String USERNAME = usernameField.getText();
-            final String PASSWORD = passwordField.getText();
-
             UserUtils.login(USERNAME, PASSWORD, DataHandler.customers);
-
             Utils.Text.showConfirmation("Login successful");
             Utils.Text.clearFields(inputFields);
-
         } catch (Exception e) {
             Utils.Text.showError(e.getMessage());
         }

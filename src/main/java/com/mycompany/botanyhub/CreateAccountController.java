@@ -55,7 +55,7 @@ public class CreateAccountController implements Initializable {
             errorMessage.append("Username cannot contain spaces or quotations\n");
             isValid = false;
         }
-        if (UserUtils.usernameExists(username)) {
+        if (UserUtils.usernameExists(username, DataHandler.customers)) {
             errorMessage.append("Username already exists\n");
             isValid = false;
         }
