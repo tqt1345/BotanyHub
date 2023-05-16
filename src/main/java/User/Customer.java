@@ -1,6 +1,8 @@
 package User;
 
-public class Customer implements User{
+import java.io.Serializable;
+
+public class Customer implements User, Serializable {
 
     private final CustomerInformation customerInformation;
 

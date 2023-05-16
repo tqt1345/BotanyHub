@@ -47,7 +47,7 @@ public class Utils {
 
         public static boolean usernameExists(String usernameInput) {
             boolean exists = false;
-            for (Customer customer : DataHandler.customers) {
+            for (User customer : DataHandler.customers) {
                 String usernameInList = customer.getUsername();
                 if (usernameInput.equals(usernameInList)) {
                     exists = true;

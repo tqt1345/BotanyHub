@@ -20,9 +20,15 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
+            DataHandler.loadData();
             scene = new Scene(loadFXML("mainMenu"));
             stage.setScene(scene);
             stage.show();
+
+            stage.setOnCloseRequest(windowEvent -> {
+                exit();
+            });
+
         } catch (Exception e) {
             System.out.println(e);
 
@@ -39,7 +45,9 @@ public class App extends Application {
     }
 
     public static void exit() {
+        DataHandler.saveData();
         Platform.exit();
+
     }
 
     public static void main(String[] args) {
