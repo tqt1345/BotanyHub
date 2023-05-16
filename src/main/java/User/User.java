@@ -1,7 +1,10 @@
 package User;
 
 public interface User {
-    void login();
-    void logout();
-    void setCurrentUser();
+    void setUsername(String username);
+    void setPassword(String password);
+
+    String getUsername();
+    String getPassword();
+
 }
