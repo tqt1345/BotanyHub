@@ -47,13 +47,21 @@ public class CreateAccountController implements Initializable {
     private boolean isValidInput(String username, String password) {
         boolean isValid = true;
 
-        if (!Utils.Validator.isValidUsername(username)) {
+        if (username.isEmpty()) {
+            errorMessage.append("Username cannot be empty\n");
             isValid = false;
-            errorMessage.append("Invalid username\n");
+        }
+        if (username.contains(" ")) {
+            errorMessage.append("Username cannot contain spaces\n");
+            isValid = false;
+        }
+        if (Utils.Validator.usernameExists(username)) {
+            errorMessage.append("Username already exists\n");
+            isValid = false;
         }
         if (!Utils.Validator.isValidPassword(password)) {
+            errorMessage.append("Password cannot be empty or contain spaces\n");
             isValid = false;
-            errorMessage.append("Invalid password\n");
         }
         return isValid;
     }
