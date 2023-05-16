@@ -51,8 +51,8 @@ public class CreateAccountController implements Initializable {
             errorMessage.append("Username cannot be empty\n");
             isValid = false;
         }
-        if (username.contains(" ")) {
-            errorMessage.append("Username cannot contain spaces\n");
+        if (username.contains(" ") || username.contains("\"")) {
+            errorMessage.append("Username cannot contain spaces or quotations\n");
             isValid = false;
         }
         if (Utils.Validator.usernameExists(username)) {
