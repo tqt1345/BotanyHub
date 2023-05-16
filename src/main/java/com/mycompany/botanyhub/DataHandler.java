@@ -55,6 +55,10 @@ public class DataHandler {
       }
    }
 
+   public static void setCurrentUser(User user, String username) {
+      DataHandler.currentUser = user;
+      DataHandler.setCurrentUsername("Current user: " + username);
+   }
 
 
 }

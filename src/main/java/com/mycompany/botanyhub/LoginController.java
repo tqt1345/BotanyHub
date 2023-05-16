@@ -28,26 +28,18 @@ public class LoginController implements Initializable {
 
     @FXML private void loginButton() {
         try {
+
             final String USERNAME = usernameField.getText();
             final String PASSWORD = passwordField.getText();
 
-            User currentUser = getLoggedInUser(USERNAME, PASSWORD, DataHandler.customers);
-            DataHandler.currentUser = currentUser;
-            DataHandler.setCurrentUsername("Current user: " + USERNAME);
+            UserUtils.login(USERNAME, PASSWORD);
+
             Utils.Text.showConfirmation("Login successful");
             Utils.Text.clearFields(inputFields);
+
         } catch (Exception e) {
             Utils.Text.showError(e.getMessage());
         }
-    }
-
-    private <T extends User> User getLoggedInUser(String username, String password, ArrayList<T> users) throws Exception {
-        for (T user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return user;
-            }
-        }
-        throw new Exception("Invalid username or password");
     }
 
     @FXML private void switchToMainMenu() throws Exception {
