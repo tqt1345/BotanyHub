@@ -4,17 +4,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Product page" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.botanyhub.ViewIndividualProductController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <Button layoutX="279.0" layoutY="317.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
+            <Button layoutX="358.0" layoutY="313.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
             <Label fx:id="currentUserLabel" layoutX="461.0" layoutY="14.0" text="Logged in as" />
-            <TextArea fx:id="productDetailsTextArea" layoutX="329.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-            <ImageView fx:id="currentProductImage" fitHeight="150.0" fitWidth="200.0" layoutX="73.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
+            <TextArea fx:id="productDetailsTextArea" layoutX="199.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+            <Button layoutX="199.0" layoutY="313.0" mnemonicParsing="false" onAction="#addToCart" text="Add to Cart" />
          </children>
       </AnchorPane>
    </content>

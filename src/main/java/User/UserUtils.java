@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class UserUtils {
 
+    // Login the user if credentials match.
     public static void login(String inputtedUsername, String inputtedPassword, ArrayList<? extends User> users) throws Exception {
         for (User user : users) {
             final boolean CREDENTIALS_MATCHED = inputtedUsername.equals(user.getUsername()) && inputtedPassword.equals(user.getPassword());
@@ -17,10 +18,12 @@ public class UserUtils {
         throw new Exception("Invalid username or password");
     }
 
+    // Logout the current user.
     public static void logout() {
         DataHandler.setCurrentUser(null, "Not logged in");
     }
 
+    // Checks if a username exists
     public static boolean usernameExists(String usernameInput, ArrayList<? extends User> users) {
         boolean exists = false;
         for (User user : users) {
@@ -32,6 +35,7 @@ public class UserUtils {
         return exists;
     }
 
+    // Checks if a password is valid
     public static boolean isValidPassword(String password) {
         boolean isValid = true;
         if (password.isEmpty()) {
@@ -42,12 +46,4 @@ public class UserUtils {
         }
         return isValid;
     }
-
-    /*
-    public static void loginOld (String username, String password) throws Exception {
-        User currentUser = getUserWithCredentials(username, password, DataHandler.customers);
-        DataHandler.setCurrentUser(currentUser,username);
-    }
-
-     */
 }

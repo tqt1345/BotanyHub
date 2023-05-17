@@ -26,8 +26,9 @@ public class ViewIndividualProductController implements Initializable {
 
     @FXML private TextArea productDetailsTextArea;
     public static String currentProductName;
-    @FXML private ImageView currentProductImage;
+    //@FXML private ImageView currentProductImage;
 
+    private Product currentProduct;
     /**
      * Initializes the controller class.
      */
@@ -39,13 +40,22 @@ public class ViewIndividualProductController implements Initializable {
 
     private void setProduct(String name) {
         try {
-            final String PRODUCT_DETAILS = ProductUtils.getProduct(name,DataHandler.products).toString();
-            productDetailsTextArea.setText(PRODUCT_DETAILS);
+            currentProduct = ProductUtils.getProduct(name,DataHandler.products);
+            productDetailsTextArea.setText(currentProduct.toString());
+
         } catch (Exception e) {
             Utils.Text.showError("Error fetching product details: " + e.getMessage());
         }
     }
 
+    @FXML private void addToCart() {
+        if (DataHandler.currentUser == null) {
+            Utils.Text.showError("Can't add to cart, must be logged in.");
+            return;
+        }
+        DataHandler.currentUser.addProductToCart(currentProduct);
+        Utils.Text.showConfirmation("Successfully added product to cart");
+    }
 
     @FXML private void backButton() throws IOException {
         App.setRoot("viewProducts");

@@ -2,15 +2,31 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="ViewCart" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.botanyhub.ViewCartController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <Button layoutX="279.0" layoutY="317.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
-            <Label fx:id="currentUserLabel" layoutX="461.0" layoutY="14.0" text="Logged in as" />
+            <ListView fx:id="productsInCart" layoutX="98.0" layoutY="73.0" prefHeight="200.0" prefWidth="404.0" />
+            <Label layoutX="283.0" layoutY="14.0" text="Cart">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox layoutX="98.0" layoutY="294.0" prefHeight="59.0" prefWidth="481.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Purchase Items" />
+                  <Button mnemonicParsing="false" onAction="#showCartButton" text="Show Cart" />
+                  <Button mnemonicParsing="false" onAction="#viewProductButton" text="View Product" />
+                  <Button mnemonicParsing="false" onAction="#removeProductButton" text="Remove Product" />
+                  <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </content>

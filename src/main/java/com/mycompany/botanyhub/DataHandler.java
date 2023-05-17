@@ -85,7 +85,6 @@ public class DataHandler {
          plants = (ArrayList<Plant>) input.readObject();
          products = (ArrayList<Product>) input.readObject();
 
-
          file.close();
          input.close();
 
@@ -110,6 +109,8 @@ public class DataHandler {
     public static void clearUserData() {
           customers.clear();
           administrators.clear();
+          currentUser = null;
+          currentUsername.set("Current user: Not logged in");
     }
 
 }

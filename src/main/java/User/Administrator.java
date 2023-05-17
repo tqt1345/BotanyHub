@@ -1,6 +1,9 @@
 package User;
 
+import Product.Product;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Administrator implements User, Serializable {
 
@@ -18,5 +21,16 @@ public class Administrator implements User, Serializable {
     public String getPassword() {
         return null;
     }
+
+    @Override
+    public void addProductToCart(Product product) {
+
+    }
+
+    @Override
+    public ArrayList<Product> getCart() {
+        return null;
+    }
+
 }
 
