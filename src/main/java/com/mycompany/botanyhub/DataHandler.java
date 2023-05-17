@@ -3,13 +3,14 @@ package com.mycompany.botanyhub;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
 import User.*;
 import Product.*;
+import javax.imageio.ImageIO;
+
 
 public class DataHandler {
    public static ArrayList<Customer> customers = new ArrayList<>();
@@ -26,14 +27,15 @@ public class DataHandler {
    public static StringProperty currentUsername = new SimpleStringProperty("Current user: Not logged in");
 
    // Images
-   public static Image bonsaiTreeImage = new Image("file:src/main/resources/images/bonsaiTree.jpg");
-   public static Image bambooPlantImage = new Image("file:src/main/resources/images/bambooPlant.jpg");
-   public static Image papayaPlantImage = new Image("file:src/main/resources/images/papayaPlant.jpg");
-   public static Image pruningShearsImage = new Image("file:src/main/resources/images/pruningShears.jpg");
-   public static Image shovelImage = new Image("file:src/main/resources/images/shovel.jpg");
-   public static Image wateringCanImage = new Image("file:src/main/resources/images/wateringCan.jpg");
+   public static String pruningShearsImage = "src/main/resources/images/pruningShearsTool.jpg";
+   public static String shovelImage = "src/main/resources/images/shovelTool.jpg";
+   public static String wateringCanImage = "src/main/resources/images/wateringCanTool.jpg";
+   public static String bonsaiTreeImage = "src/main/resources/images/bonsaiTreePlant.jpg";
+   public static String bambooPlantImage = "src/main/resources/images/bambooPlant.jpg";
+   public static String papayaPlantImage = "src/main/resources/images/papayaPlant.jpg";
 
-   public static void setCurrentUsername(String username) {
+   public static void setCurrentUser(User user, String username) {
+      currentUser = user;
       currentUsername.set(username);
    }
 
@@ -44,12 +46,11 @@ public class DataHandler {
       tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15,wateringCanImage));           // POS 2
 
       plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150,bonsaiTreeImage));             // POS 0
-      plants.add(new Plant("Bamboo Plant", "A spiky plant.", 20,bambooPlantImage));                           // POS 1
-      plants.add(new Plant("Papaya Plant", "A flower.", 10,papayaPlantImage));
+      plants.add(new Plant("Bamboo Plant", "tmp.", 20,bambooPlantImage));                           // POS 1
+      plants.add(new Plant("Papaya Plant", "tmp.", 10,papayaPlantImage));
 
       products.addAll(tools);
       products.addAll(plants);
-
 
    }
 
@@ -95,5 +96,20 @@ public class DataHandler {
       }
    }
 
+   public static void clearAllData() {
+        clearProductData();
+        clearUserData();
+   }
+
+   public static void clearProductData() {
+        tools.clear();
+        plants.clear();
+        products.clear();
+   }
+
+    public static void clearUserData() {
+          customers.clear();
+          administrators.clear();
+    }
 
 }

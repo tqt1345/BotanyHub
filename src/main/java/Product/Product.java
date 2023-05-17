@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class Product implements Serializable {
     final private ProductInformation PRODUCT_INFORMATION;
 
-    public Product(String name, String description, double price, Image image) {
-        this.PRODUCT_INFORMATION = new ProductInformation(name, description, price,image);
+    public Product(String name, String description, double price, String imagePath) {
+        this.PRODUCT_INFORMATION = new ProductInformation(name, description, price,imagePath);
     }
 
     public String getName() {
@@ -28,6 +28,9 @@ public class Product implements Serializable {
         return this.PRODUCT_INFORMATION.getImage();
     }
 
+    public String getImagePath() {
+        return this.PRODUCT_INFORMATION.getImagePath();
+    }
     public void setName(String name) {
         this.PRODUCT_INFORMATION.setName(name);
     }

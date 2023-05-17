@@ -2,6 +2,7 @@ package com.mycompany.botanyhub;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -55,6 +56,8 @@ public class App extends Application {
         Platform.exit();
 
     }
+
+
 
     public static void main(String[] args) {
         launch();

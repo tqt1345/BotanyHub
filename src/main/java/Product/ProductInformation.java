@@ -8,13 +8,13 @@ public class ProductInformation implements Serializable {
     private String name;
     private String description;
     private double price;
-    private transient Image image; // Image does not implement Serializable. Marked as transient to ignore serialization.
+    private String imagePath;
 
-    public ProductInformation(String name, String description, double price, Image image){
+    public ProductInformation(String name, String description, double price, String imagePath){
         this.name = name;
         this.description = description;
         this.price = price;
-        this.image = image;
+        this.imagePath = imagePath;
     }
 
     public String getName(){
@@ -27,7 +27,11 @@ public class ProductInformation implements Serializable {
         return this.price;
     }
     public Image getImage(){
-        return this.image;
+        return new Image(this.imagePath);
+    }
+
+    public String getImagePath(){
+        return this.imagePath;
     }
 
     public void setName(String name){
@@ -39,8 +43,6 @@ public class ProductInformation implements Serializable {
     public void setPrice(double price){
         this.price = price;
     }
-    public void setImage(Image image){
-        this.image = image;
-    }
+
 
 }

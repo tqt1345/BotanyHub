@@ -28,9 +28,6 @@ public class ViewProductsController implements Initializable {
     @FXML private ImageView papayaPlantImage;
     @FXML private ImageView bambooPlantImage;
 
-
-
-
     @FXML private Label currentUserLabel;
 
     @FXML
@@ -46,32 +43,6 @@ public class ViewProductsController implements Initializable {
     }
 
 
-    /*
-    private void determineClickedImage(MouseEvent clickEvent) {
-        ImageView clickedImage = (ImageView) clickEvent.getSource();
-        final String CLICKED_IMAGE_ID = clickedImage.getId();
-        if (CLICKED_IMAGE_ID.equals("pruningShears")) {
-            System.out.println("Clicked on pruning shears");
-        }
-        if (CLICKED_IMAGE_ID.equals("shovel")) {
-            System.out.println("Clicked on shovel");
-        }
-        if (CLICKED_IMAGE_ID.equals("wateringCan")) {
-            System.out.println("Clicked on watering can");
-        }
-        if (CLICKED_IMAGE_ID.equals("bonsaiTree")) {
-            System.out.println("Clicked on bonsai tree");
-        }
-        if (CLICKED_IMAGE_ID.equals("papayaTree")) {
-            System.out.println("Clicked on papaya tree");
-        }
-        if (CLICKED_IMAGE_ID.equals("bambooPlant")) {
-            System.out.println("Clicked on bamboo plant");
-        }
-    }
-
-
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         currentUserLabel.textProperty().bind(DataHandler.currentUsername);

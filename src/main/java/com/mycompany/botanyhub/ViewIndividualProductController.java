@@ -6,6 +6,7 @@ package com.mycompany.botanyhub;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ public class ViewIndividualProductController implements Initializable {
 
     @FXML private TextArea productDetailsTextArea;
     public static String currentProductName;
-    @FXML private static ImageView currentProductImage;
+    @FXML private ImageView currentProductImage;
 
     /**
      * Initializes the controller class.
@@ -39,9 +40,7 @@ public class ViewIndividualProductController implements Initializable {
     private void setProduct(String name) {
         try {
             final String PRODUCT_DETAILS = ProductUtils.getProduct(name,DataHandler.products).toString();
-            final Image PRODUCT_IMAGE = ProductUtils.getProduct(name,DataHandler.products).getImage();
             productDetailsTextArea.setText(PRODUCT_DETAILS);
-            currentProductImage.setImage(PRODUCT_IMAGE);
         } catch (Exception e) {
             Utils.Text.showError("Error fetching product details: " + e.getMessage());
         }

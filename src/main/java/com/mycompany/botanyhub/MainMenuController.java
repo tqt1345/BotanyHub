@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import User.*;
+import Product.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -67,6 +68,22 @@ public class MainMenuController implements Initializable {
     }
     @FXML private void exitButton() throws IOException {
         App.exit();
+    }
+
+    // FOR TESTING
+    @FXML private void clearDataButton() throws IOException {
+        DataHandler.clearAllData();
+        DataHandler.initialiseProductData();
+    }
+
+    @FXML private void testButton () throws IOException {
+        StringBuilder sb = new StringBuilder();
+        for (Product product : DataHandler.products) {
+            sb.append(product.getImagePath());
+            sb.append("\n");
+        }
+
+        Utils.Text.showConfirmation(sb.toString());
     }
 
 }
