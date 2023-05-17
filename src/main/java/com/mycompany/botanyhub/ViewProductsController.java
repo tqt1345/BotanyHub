@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -37,13 +38,56 @@ public class ViewProductsController implements Initializable {
         App.setRoot("mainMenu");
     }
 
-    @FXML private void viewProductOnClick() throws IOException {
+    @FXML private void handleImageClick(MouseEvent clickEvent) throws IOException {
+        ImageView clickedImage = (ImageView) clickEvent.getSource();
+        ViewIndividualProductController.currentProductName = clickedImage.getId();
+        Utils.Text.showConfirmation("Clicked on: " + clickedImage.getId());
         App.setRoot("viewIndividualProduct");
     }
+
+
+    /*
+    private void determineClickedImage(MouseEvent clickEvent) {
+        ImageView clickedImage = (ImageView) clickEvent.getSource();
+        final String CLICKED_IMAGE_ID = clickedImage.getId();
+        if (CLICKED_IMAGE_ID.equals("pruningShears")) {
+            System.out.println("Clicked on pruning shears");
+        }
+        if (CLICKED_IMAGE_ID.equals("shovel")) {
+            System.out.println("Clicked on shovel");
+        }
+        if (CLICKED_IMAGE_ID.equals("wateringCan")) {
+            System.out.println("Clicked on watering can");
+        }
+        if (CLICKED_IMAGE_ID.equals("bonsaiTree")) {
+            System.out.println("Clicked on bonsai tree");
+        }
+        if (CLICKED_IMAGE_ID.equals("papayaTree")) {
+            System.out.println("Clicked on papaya tree");
+        }
+        if (CLICKED_IMAGE_ID.equals("bambooPlant")) {
+            System.out.println("Clicked on bamboo plant");
+        }
+    }
+
+
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         currentUserLabel.textProperty().bind(DataHandler.currentUsername);
 
+        final String PRUNE_SHEARS_NAME = DataHandler.tools.get(0).getName();
+        final String SHOVEL_NAME = DataHandler.tools.get(1).getName();
+        final String WATERING_CAN_NAME = DataHandler.tools.get(2).getName();
+        final String BONSAI_TREE_NAME = DataHandler.plants.get(0).getName();
+        final String PAPAYA_TREE_NAME = DataHandler.plants.get(1).getName();
+        final String BAMBOO_PLANT_NAME = DataHandler.plants.get(2).getName();
 
+        pruningShearsToolImage.setId(PRUNE_SHEARS_NAME);
+        shovelToolImage.setId(SHOVEL_NAME);
+        wateringCanToolImage.setId(WATERING_CAN_NAME);
+        bonsaiTreePlantImage.setId(BONSAI_TREE_NAME);
+        papayaPlantImage.setId(PAPAYA_TREE_NAME);
+        bambooPlantImage.setId(BAMBOO_PLANT_NAME);
     }
 }

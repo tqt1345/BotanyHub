@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -11,6 +12,7 @@
          <children>
             <Button layoutX="279.0" layoutY="317.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
             <Label fx:id="currentUserLabel" layoutX="461.0" layoutY="14.0" text="Logged in as" />
+            <TextArea fx:id="productDetailsTextArea" layoutX="199.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
    </content>

@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+
+import Product.*;
 
 /**
  * FXML Controller class
@@ -18,13 +21,23 @@ import javafx.fxml.Initializable;
  */
 public class ViewIndividualProductController implements Initializable {
 
+    @FXML private TextArea productDetailsTextArea;
+    public static String currentProductName;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        setProduct(currentProductName);
     }    
+
+    private void setProduct(String name) {
+        productDetailsTextArea.setText(name);
+    }
+
+
+
 
     @FXML private void backButton() throws IOException {
         App.setRoot("viewProducts");

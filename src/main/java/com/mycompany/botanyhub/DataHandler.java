@@ -30,13 +30,13 @@ public class DataHandler {
 
    public static void initialiseProductData() {
 
-      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25));
-      tools.add(new Tool("Shovel", "A tool used for digging holes.", 50));
-      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15));
+      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25)); // POS 0
+      tools.add(new Tool("Shovel", "A tool used for digging holes.", 50));                   // POS 1
+      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15));           // POS 2
 
-      plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150));
-      plants.add(new Plant("Bamboo Plant", "A spiky plant.", 20));
-      plants.add(new Plant("Papaya Plant", "A flower.", 10));
+      plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150));             // POS 0
+      plants.add(new Plant("Bamboo Plant", "A spiky plant.", 20));                           // POS 1
+      plants.add(new Plant("Papaya Plant", "A flower.", 10));                                // POS 2
 
    }
 

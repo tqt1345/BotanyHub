@@ -52,7 +52,12 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML private void switchToViewProducts() throws IOException {
-        App.setRoot("viewProducts");
+        try {
+            App.setRoot("viewProducts");
+
+        } catch (Exception e) {
+            Utils.Text.showError(e.getMessage());
+        }
     }
     @FXML private void switchToViewCart() throws IOException {
         App.setRoot("viewCart");
