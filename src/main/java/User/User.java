@@ -1,10 +1,9 @@
 package User;
 
+
+// Interface to allow polymorphism
 public interface User {
-    void setUsername(String username);
-    void setPassword(String password);
 
     String getUsername();
     String getPassword();
-
 }

@@ -40,28 +40,33 @@ public class CreateAccountController implements Initializable {
                 clearErrorMessage();
             }
         } catch (Exception e) {
-            Utils.Text.showError(e.getMessage());
+            Utils.Text.showError("Error creating account\n" + e.getMessage());
         }
     }
 
     private boolean isValidInput(String username, String password) {
         boolean isValid = true;
 
-        if (username.isEmpty()) {
-            errorMessage.append("Username cannot be empty\n");
-            isValid = false;
-        }
-        if (username.contains(" ") || username.contains("\"")) {
-            errorMessage.append("Username cannot contain spaces or quotations\n");
-            isValid = false;
-        }
-        if (UserUtils.usernameExists(username, DataHandler.customers)) {
-            errorMessage.append("Username already exists\n");
-            isValid = false;
-        }
-        if (!UserUtils.isValidPassword(password)) {
-            errorMessage.append("Password cannot be empty or contain spaces\n");
-            isValid = false;
+        try {
+            if (username.isEmpty()) {
+                errorMessage.append("Username cannot be empty\n");
+                isValid = false;
+            }
+            if (username.contains(" ") || username.contains("\"")) {
+                errorMessage.append("Username cannot contain spaces or quotations\n");
+                isValid = false;
+            }
+            if (UserUtils.usernameExists(username, DataHandler.customers)) {
+                errorMessage.append("Username already exists\n");
+                isValid = false;
+            }
+            if (!UserUtils.isValidPassword(password)) {
+                errorMessage.append("Password cannot be empty or contain spaces\n");
+                isValid = false;
+            }
+
+        } catch (Exception e) {
+            Utils.Text.showError("Error validating user input\n" + e.getMessage());
         }
         return isValid;
     }

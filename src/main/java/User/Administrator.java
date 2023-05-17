@@ -10,16 +10,6 @@ public class Administrator implements User, Serializable {
     }
 
     @Override
-    public void setUsername(String username) {
-
-    }
-
-    @Override
-    public void setPassword(String password) {
-
-    }
-
-    @Override
     public String getUsername() {
         return null;
     }

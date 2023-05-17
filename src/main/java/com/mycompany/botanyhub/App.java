@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,11 +21,16 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
+            boolean NO_PRODUCTS = DataHandler.plants.isEmpty() || DataHandler.tools.isEmpty();
+            if (NO_PRODUCTS) {
+                DataHandler.initialiseProductData();
+            }
             DataHandler.loadData();
+
+            // Set GUI elements
             scene = new Scene(loadFXML("mainMenu"));
             stage.setScene(scene);
             stage.show();
-
             stage.setOnCloseRequest(windowEvent -> {
                 exit();
             });

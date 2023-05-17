@@ -10,22 +10,10 @@ public class Customer implements User, Serializable {
         this.customerInformation = new CustomerInformation(username, password);
     }
 
-    @Override
-    public void setUsername(String username) {
-        this.customerInformation.setUsername(username);
-    }
-
-    @Override
-    public void setPassword(String password) {
-        this.customerInformation.setPassword(password);
-    }
-
-    @Override
     public String getUsername() {
         return this.customerInformation.getUsername();
     }
 
-    @Override
     public String getPassword() {
         return this.customerInformation.getPassword();
     }
