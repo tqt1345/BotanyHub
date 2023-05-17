@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -17,12 +18,15 @@ import javafx.fxml.Initializable;
  */
 public class ViewCartController implements Initializable {
 
+    @FXML private Label currentUserLabel;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        currentUserLabel.textProperty().bind(DataHandler.currentUsername);
+
     }
 
     @FXML
