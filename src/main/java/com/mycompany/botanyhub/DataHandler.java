@@ -1,28 +1,37 @@
 package com.mycompany.botanyhub;
-import User.*;
-import Product.*;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
+import javafx.scene.image.Image;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import User.*;
+import Product.*;
 
 public class DataHandler {
-
-   // Users
    public static ArrayList<Customer> customers = new ArrayList<>();
    public static ArrayList<Administrator> administrators = new ArrayList<>();
+
 
    // Products
    public static ArrayList<Tool> tools = new ArrayList<>();
    public static ArrayList<Plant> plants = new ArrayList<>();
+   public static ArrayList<Product> products = new ArrayList<>();
 
    // User status
    public static User currentUser;
    public static StringProperty currentUsername = new SimpleStringProperty("Current user: Not logged in");
+
+   // Images
+   public static Image bonsaiTreeImage = new Image("file:src/main/resources/images/bonsaiTree.jpg");
+   public static Image bambooPlantImage = new Image("file:src/main/resources/images/bambooPlant.jpg");
+   public static Image papayaPlantImage = new Image("file:src/main/resources/images/papayaPlant.jpg");
+   public static Image pruningShearsImage = new Image("file:src/main/resources/images/pruningShears.jpg");
+   public static Image shovelImage = new Image("file:src/main/resources/images/shovel.jpg");
+   public static Image wateringCanImage = new Image("file:src/main/resources/images/wateringCan.jpg");
 
    public static void setCurrentUsername(String username) {
       currentUsername.set(username);
@@ -30,13 +39,17 @@ public class DataHandler {
 
    public static void initialiseProductData() {
 
-      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25)); // POS 0
-      tools.add(new Tool("Shovel", "A tool used for digging holes.", 50));                   // POS 1
-      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15));           // POS 2
+      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25, pruningShearsImage)); // POS 0
+      tools.add(new Tool("Shovel", "A tool used for digging holes.", 50,shovelImage));                   // POS 1
+      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15,wateringCanImage));           // POS 2
 
-      plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150));             // POS 0
-      plants.add(new Plant("Bamboo Plant", "A spiky plant.", 20));                           // POS 1
-      plants.add(new Plant("Papaya Plant", "A flower.", 10));                                // POS 2
+      plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150,bonsaiTreeImage));             // POS 0
+      plants.add(new Plant("Bamboo Plant", "A spiky plant.", 20,bambooPlantImage));                           // POS 1
+      plants.add(new Plant("Papaya Plant", "A flower.", 10,papayaPlantImage));
+
+      products.addAll(tools);
+      products.addAll(plants);
+
 
    }
 
@@ -49,7 +62,8 @@ public class DataHandler {
          output.writeObject(customers);
          output.writeObject(administrators);
          output.writeObject(tools);
-            output.writeObject(plants);
+         output.writeObject(plants);
+         output.writeObject(products);
 
          output.close();
       } catch (Exception e) {
@@ -68,6 +82,8 @@ public class DataHandler {
          administrators = (ArrayList<Administrator>) input.readObject();
          tools = (ArrayList<Tool>) input.readObject();
          plants = (ArrayList<Plant>) input.readObject();
+         products = (ArrayList<Product>) input.readObject();
+
 
          file.close();
          input.close();
@@ -79,8 +95,5 @@ public class DataHandler {
       }
    }
 
-   public static void setCurrentUser(User user, String username) {
-      DataHandler.currentUser = user;
-      DataHandler.setCurrentUsername("Current user: " + username);
-   }
+
 }

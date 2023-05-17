@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ProductUtils {
 
-    public static Product getProduct (String inputtedName, List<? extends Product> products) throws Exception {
+    public static Product getProduct (String inputtedName, List<? extends Product> products) {
         for (Product product : products) {
             if (product.getName().equals(inputtedName)) {
                 return product;

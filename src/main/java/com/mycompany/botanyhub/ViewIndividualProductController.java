@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 import Product.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -23,6 +25,7 @@ public class ViewIndividualProductController implements Initializable {
 
     @FXML private TextArea productDetailsTextArea;
     public static String currentProductName;
+    @FXML private static ImageView currentProductImage;
 
     /**
      * Initializes the controller class.
@@ -30,13 +33,19 @@ public class ViewIndividualProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setProduct(currentProductName);
+
     }    
 
     private void setProduct(String name) {
-        productDetailsTextArea.setText(name);
+        try {
+            final String PRODUCT_DETAILS = ProductUtils.getProduct(name,DataHandler.products).toString();
+            final Image PRODUCT_IMAGE = ProductUtils.getProduct(name,DataHandler.products).getImage();
+            productDetailsTextArea.setText(PRODUCT_DETAILS);
+            currentProductImage.setImage(PRODUCT_IMAGE);
+        } catch (Exception e) {
+            Utils.Text.showError("Error fetching product details: " + e.getMessage());
+        }
     }
-
-
 
 
     @FXML private void backButton() throws IOException {
