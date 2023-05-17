@@ -1,9 +1,6 @@
 package Product;
 
-<<<<<<< Updated upstream
-public interface Product {
-    void getId();
-=======
+
 import javafx.scene.image.Image;
 
 import java.io.Serializable;
@@ -49,6 +46,4 @@ public class Product implements Serializable {
                 "Product Description: " + this.PRODUCT_INFORMATION.getDescription() + "\n" +
                 "Product Price: $" + this.PRODUCT_INFORMATION.getPrice() + "\n";
     }
-
->>>>>>> Stashed changes
 }

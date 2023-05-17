@@ -1,25 +1,21 @@
 package com.mycompany.botanyhub;
-import User.*;
-<<<<<<< Updated upstream
-=======
-import Product.*;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
->>>>>>> Stashed changes
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import User.*;
+import Product.*;
 
 public class DataHandler {
    public static ArrayList<Customer> customers = new ArrayList<>();
    public static ArrayList<Administrator> administrators = new ArrayList<>();
 
-<<<<<<< Updated upstream
-=======
+
    // Products
    public static ArrayList<Tool> tools = new ArrayList<>();
    public static ArrayList<Plant> plants = new ArrayList<>();
@@ -57,7 +53,6 @@ public class DataHandler {
 
    }
 
->>>>>>> Stashed changes
    public static void saveData() {
       try {
          FileOutputStream file = new FileOutputStream("data.ser");
@@ -66,12 +61,9 @@ public class DataHandler {
          // Write arrays to file
          output.writeObject(customers);
          output.writeObject(administrators);
-<<<<<<< Updated upstream
-=======
          output.writeObject(tools);
          output.writeObject(plants);
          output.writeObject(products);
->>>>>>> Stashed changes
 
          output.close();
       } catch (Exception e) {
@@ -88,12 +80,10 @@ public class DataHandler {
          // Load arrays from file
          customers = (ArrayList<Customer>) input.readObject();
          administrators = (ArrayList<Administrator>) input.readObject();
-<<<<<<< Updated upstream
-=======
          tools = (ArrayList<Tool>) input.readObject();
          plants = (ArrayList<Plant>) input.readObject();
          products = (ArrayList<Product>) input.readObject();
->>>>>>> Stashed changes
+
 
          file.close();
          input.close();
