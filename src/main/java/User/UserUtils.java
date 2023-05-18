@@ -11,7 +11,7 @@ public class UserUtils {
         for (User user : users) {
             final boolean CREDENTIALS_MATCHED = inputtedUsername.equals(user.getUsername()) && inputtedPassword.equals(user.getPassword());
             if (CREDENTIALS_MATCHED) {
-                DataHandler.setCurrentUser(user, inputtedUsername);
+                DataHandler.setUserStatus(user, inputtedUsername);
                 return;
             }
         }
@@ -20,7 +20,7 @@ public class UserUtils {
 
     // Logout the current user.
     public static void logout() {
-        DataHandler.setCurrentUser(null, "Not logged in");
+        DataHandler.setUserStatus(null, "Not logged in");
     }
 
     // Checks if a username exists

@@ -49,11 +49,11 @@ public class ViewIndividualProductController implements Initializable {
     }
 
     @FXML private void addToCart() {
-        if (DataHandler.currentUser == null) {
+        if (DataHandler.loggedInUser == null) {
             Utils.Text.showError("Can't add to cart, must be logged in.");
             return;
         }
-        DataHandler.currentUser.addProductToCart(currentProduct);
+        DataHandler.loggedInUser.addProductToCart(currentProduct);
         Utils.Text.showConfirmation("Successfully added product to cart");
     }
 

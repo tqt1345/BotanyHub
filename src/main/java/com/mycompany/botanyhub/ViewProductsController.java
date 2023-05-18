@@ -45,7 +45,7 @@ public class ViewProductsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        currentUserLabel.textProperty().bind(DataHandler.currentUsername);
+        currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
 
         final String PRUNE_SHEARS_NAME = DataHandler.tools.get(0).getName();
         final String SHOVEL_NAME = DataHandler.tools.get(1).getName();

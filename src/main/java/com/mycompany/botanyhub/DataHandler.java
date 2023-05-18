@@ -2,58 +2,54 @@ package com.mycompany.botanyhub;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.image.Image;
-
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import User.*;
 import Product.*;
-import javax.imageio.ImageIO;
 
 
 public class DataHandler {
+
+   // User Lists
    public static ArrayList<Customer> customers = new ArrayList<>();
    public static ArrayList<Administrator> administrators = new ArrayList<>();
 
-
-   // Products
+   // Product Lists
    public static ArrayList<Tool> tools = new ArrayList<>();
    public static ArrayList<Plant> plants = new ArrayList<>();
    public static ArrayList<Product> products = new ArrayList<>();
 
    // User status
-   public static User currentUser;
-   public static StringProperty currentUsername = new SimpleStringProperty("Current user: Not logged in");
+   public static User loggedInUser; // currently logged-in user
+   private static final String DEFAULT_USER_STATUS = "Not Logged In";
+   public static final StringProperty loggedInUsername = new SimpleStringProperty(DEFAULT_USER_STATUS);
 
-   // Images
-   public static String pruningShearsImage = "src/main/resources/images/pruningShearsTool.jpg";
-   public static String shovelImage = "src/main/resources/images/shovelTool.jpg";
-   public static String wateringCanImage = "src/main/resources/images/wateringCanTool.jpg";
-   public static String bonsaiTreeImage = "src/main/resources/images/bonsaiTreePlant.jpg";
-   public static String bambooPlantImage = "src/main/resources/images/bambooPlant.jpg";
-   public static String papayaPlantImage = "src/main/resources/images/papayaPlant.jpg";
-
-   public static void setCurrentUser(User user, String username) {
-      currentUser = user;
-      currentUsername.set(username);
+   // Sets the user status with the user and username
+   public static void setUserStatus(User user, String username) {
+      loggedInUser = user;
+      loggedInUsername.set("Logged in as: " + username);
    }
 
+   // Creates the catalogue of products
    public static void initialiseProductData() {
 
-      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25, pruningShearsImage)); // POS 0
-      tools.add(new Tool("Shovel", "A tool used for digging holes.", 50,shovelImage));                   // POS 1
-      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15,wateringCanImage));           // POS 2
+      // Make tool products
+      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25));   // POS 0
+      tools.add(new Tool("Shovel", "A tool used for digging holes.", 50));                      // POS 1
+      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15));              // POS 2
 
-      plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150,bonsaiTreeImage));             // POS 0
-      plants.add(new Plant("Bamboo Plant", "tmp.", 20,bambooPlantImage));                           // POS 1
-      plants.add(new Plant("Papaya Plant", "tmp.", 10,papayaPlantImage));
+      // Make plant products
+      plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150));                // POS 0
+      plants.add(new Plant("Bamboo Plant", "tmp.", 20));                                        // POS 1
+      plants.add(new Plant("Papaya Plant", "tmp.", 10));                                        // POS 2
 
+      // All products added to products list for easy access
       products.addAll(tools);
       products.addAll(plants);
 
    }
 
+   // Saves all object arrays to a file via serialization
    public static void saveData() {
       try {
          FileOutputStream file = new FileOutputStream("data.ser");
@@ -90,27 +86,45 @@ public class DataHandler {
 
       } catch (Exception e) {
          // Creates a new data file if one doesn't exist
-         Utils.Text.showConfirmation("No data file, creating new file.\n");
+         Utils.Text.showConfirmation("No data file or data is corrupted, creating new file.\n");
          saveData();
       }
    }
 
+   // Clears all data from data.ser file
    public static void clearAllData() {
         clearProductData();
         clearUserData();
    }
 
+   // Clears all product data from data.ser file
    public static void clearProductData() {
         tools.clear();
         plants.clear();
         products.clear();
    }
 
+    // Clears all user data from data.ser file
     public static void clearUserData() {
           customers.clear();
           administrators.clear();
-          currentUser = null;
-          currentUsername.set("Current user: Not logged in");
+          clearCurrentUser();
+    }
+
+    // Clears current user status
+    public static void clearCurrentUser() {
+       loggedInUser = null;
+       loggedInUsername.set("Current user: Not logged in");
     }
 
 }
+
+// Images
+   /*
+   public static String pruningShearsImage = "src/main/resources/images/pruningShearsTool.jpg";
+   public static String shovelImage = "src/main/resources/images/shovelTool.jpg";
+   public static String wateringCanImage = "src/main/resources/images/wateringCanTool.jpg";
+   public static String bonsaiTreeImage = "src/main/resources/images/bonsaiTreePlant.jpg";
+   public static String bambooPlantImage = "src/main/resources/images/bambooPlant.jpg";
+   public static String papayaPlantImage = "src/main/resources/images/papayaPlant.jpg";
+    */

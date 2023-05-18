@@ -32,7 +32,8 @@ public class CreateAccountController implements Initializable {
             final String PASSWORD = passwordField.getText();
 
             if (isValidInput(USERNAME, PASSWORD)) {
-                DataHandler.customers.add(makeCustomer());
+                Customer newCustomer = makeCustomer();
+                DataHandler.customers.add(newCustomer);
                 Utils.Text.showConfirmation("Account created successfully");
                 Utils.Text.clearFields(inputFields);
             } else {

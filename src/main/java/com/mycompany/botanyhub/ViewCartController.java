@@ -25,7 +25,7 @@ import User.*;
  */
 public class ViewCartController implements Initializable {
 
-    @FXML private ListView<String> productsInCart;
+    @FXML private ListView<String> productsInCartListView;
 
     /**
      * Initializes the controller class.
@@ -41,13 +41,13 @@ public class ViewCartController implements Initializable {
                 return;
             }
             ObservableList<String> products = FXCollections.observableArrayList();
-            final ArrayList<Product> USER_CART = DataHandler.currentUser.getCart();
+            final ArrayList<Product> USER_CART = DataHandler.loggedInUser.getCart();
             for (Product product : USER_CART) {
                 products.add(product.getName());
             }
-            productsInCart.setItems(products);
+            productsInCartListView.setItems(products);
         } catch (Exception e) {
-            Utils.Text.showError("Error while showing cart: " + e.getMessage());
+            Utils.Text.showError("Error while showing cart:\n " + e.getMessage());
         }
     }
 
@@ -56,13 +56,13 @@ public class ViewCartController implements Initializable {
             if (!isValid()) {
                 return;
             }
-            String selectedProduct = productsInCart.getSelectionModel().getSelectedItem();
-            Product product = ProductUtils.getProduct(selectedProduct, DataHandler.currentUser.getCart());
-            DataHandler.currentUser.getCart().remove(product);
-            productsInCart.getItems().remove(selectedProduct);
+            String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
+            Product product = ProductUtils.getProduct(selectedProduct, DataHandler.loggedInUser.getCart());
+            DataHandler.loggedInUser.getCart().remove(product);
+            productsInCartListView.getItems().remove(selectedProduct);
             Utils.Text.showConfirmation("Successfully removed product from cart");
         } catch (Exception e) {
-            Utils.Text.showError("Error while removing product from cart: " + e.getMessage());
+            Utils.Text.showError("Error while removing product from cart:\n " + e.getMessage());
         }
     }
 
@@ -71,24 +71,37 @@ public class ViewCartController implements Initializable {
             if (!isValid()) {
                 return;
             }
-            String selectedProduct = productsInCart.getSelectionModel().getSelectedItem();
-            Product product = ProductUtils.getProduct(selectedProduct, DataHandler.currentUser.getCart());
+            final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().getSelectedItem() == null;
+            if (NO_PRODUCT_SELECTED) {
+                Utils.Text.showError("Please select a product to view");
+                return;
+            }
+
+            String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem(); // get product listing from listview
+            Product product = ProductUtils.getProduct(selectedProduct, DataHandler.loggedInUser.getCart()); // get product object from listing
             ViewIndividualProductController.currentProductName = product.getName();
             App.setRoot("viewIndividualProduct");
         } catch (Exception e) {
-            Utils.Text.showError("Error while viewing product: " + e.getMessage());
+            Utils.Text.showError("Error while viewing product:\n " + e.getMessage());
         }
     }
 
-    private boolean isValid() {
-        final boolean NOT_LOGGED_IN = DataHandler.currentUser == null;
-        final boolean CART_IS_EMPTY = DataHandler.currentUser.getCart().isEmpty();
+    /*
+    private void getSelectedProduct() {
+        String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
+        Product product = ProductUtils.getProduct(selectedProduct, DataHandler.currentUser.getCart());
+    }
 
+
+     */
+    private boolean isValid() {
+        final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
         if (NOT_LOGGED_IN) {
             Utils.Text.showError("Can't perform action, user is not logged in.");
             return false;
         }
 
+        final boolean CART_IS_EMPTY = DataHandler.loggedInUser.getCart().isEmpty();
         if (CART_IS_EMPTY) {
             Utils.Text.showError("Can't perform action, cart is empty.");
             return false;

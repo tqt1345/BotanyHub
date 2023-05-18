@@ -1,4 +1,6 @@
-package Product;
+package User;
+
+import Product.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;

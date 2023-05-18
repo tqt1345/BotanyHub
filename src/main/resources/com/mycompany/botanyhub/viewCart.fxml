@@ -12,7 +12,7 @@
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <ListView fx:id="productsInCart" layoutX="98.0" layoutY="73.0" prefHeight="200.0" prefWidth="404.0" />
+            <ListView fx:id="productsInCartListView" layoutX="98.0" layoutY="73.0" prefHeight="200.0" prefWidth="404.0" />
             <Label layoutX="283.0" layoutY="14.0" text="Cart">
                <font>
                   <Font size="18.0" />

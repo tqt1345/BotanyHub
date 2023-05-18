@@ -30,7 +30,7 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        currentUserLabel.textProperty().bind(DataHandler.currentUsername);
+        currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
     }
 
 
@@ -43,7 +43,7 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML private void logoutButton() throws IOException {
-        final boolean USER_LOGGED_IN = DataHandler.currentUser != null;
+        final boolean USER_LOGGED_IN = DataHandler.loggedInUser != null;
         if (USER_LOGGED_IN) {
             UserUtils.logout();
             Utils.Text.showConfirmation("Logout successful");
@@ -76,14 +76,22 @@ public class MainMenuController implements Initializable {
         DataHandler.initialiseProductData();
     }
 
+
+    // TESTING IMAGE PATHS
     @FXML private void testButton () throws IOException {
+        /*
         StringBuilder sb = new StringBuilder();
         for (Product product : DataHandler.products) {
             sb.append(product.getImagePath());
             sb.append("\n");
         }
 
+
         Utils.Text.showConfirmation(sb.toString());
+
+         */
     }
+
+
 
 }

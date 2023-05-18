@@ -5,43 +5,24 @@ import javafx.scene.image.Image;
 
 import java.io.Serializable;
 
+// Product class handles manipulation of product objects
 public class Product implements Serializable {
     final private ProductInformation PRODUCT_INFORMATION;
 
-    public Product(String name, String description, double price, String imagePath) {
-        this.PRODUCT_INFORMATION = new ProductInformation(name, description, price,imagePath);
+    // Product constructor
+    public Product(String name, String description, double price) {
+        this.PRODUCT_INFORMATION = new ProductInformation(name, description, price);
     }
 
-    public String getName() {
-        return this.PRODUCT_INFORMATION.getName();
-    }
+    // Getters
+    public String getName() {return this.PRODUCT_INFORMATION.getName();}
+    public String getDescription() {return this.PRODUCT_INFORMATION.getDescription();}
+    public double getPrice() {return this.PRODUCT_INFORMATION.getPrice();}
 
-    public String getDescription() {
-        return this.PRODUCT_INFORMATION.getDescription();
-    }
-
-    public double getPrice() {
-        return this.PRODUCT_INFORMATION.getPrice();
-    }
-
-    public Image getImage() {
-        return this.PRODUCT_INFORMATION.getImage();
-    }
-
-    public String getImagePath() {
-        return this.PRODUCT_INFORMATION.getImagePath();
-    }
-    public void setName(String name) {
-        this.PRODUCT_INFORMATION.setName(name);
-    }
-
-    public void setDescription(String description) {
-        this.PRODUCT_INFORMATION.setDescription(description);
-    }
-
-    public void setPrice(double price) {
-        this.PRODUCT_INFORMATION.setPrice(price);
-    }
+    // Setters
+    public void setName(String name) {this.PRODUCT_INFORMATION.setName(name);}
+    public void setDescription(String description) {this.PRODUCT_INFORMATION.setDescription(description);}
+    public void setPrice(double price) {this.PRODUCT_INFORMATION.setPrice(price);}
 
     @Override
     public String toString() {
