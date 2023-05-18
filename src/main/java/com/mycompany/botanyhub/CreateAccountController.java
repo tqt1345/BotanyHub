@@ -26,6 +26,7 @@ public class CreateAccountController implements Initializable {
 
     StringBuilder errorMessage = new StringBuilder();
 
+    // Submit button creates a new user
     @FXML private void submitButton () {
         try {
             final String USERNAME = usernameField.getText();
@@ -45,6 +46,7 @@ public class CreateAccountController implements Initializable {
         }
     }
 
+    // Checks if user input is valid
     private boolean isValidInput(String username, String password) {
         boolean isValid = true;
 
@@ -72,6 +74,7 @@ public class CreateAccountController implements Initializable {
         return isValid;
     }
 
+    // Builds and returns new customer object
     private Customer makeCustomer() {
         final String USERNAME = usernameField.getText();
         final String PASSWORD = passwordField.getText();

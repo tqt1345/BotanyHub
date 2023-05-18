@@ -25,7 +25,7 @@ public class MainMenuController implements Initializable {
      * Initializes the controller class.
      */
 
-    @FXML private Label currentUserLabel;
+    @FXML private Label currentUserLabel; // Displays username of logged-in user
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -33,13 +33,14 @@ public class MainMenuController implements Initializable {
         currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
     }
 
-
     @FXML private void switchToCreateAccount() throws IOException {
         App.setRoot("createAccount");
+        App.previousScene = "mainMenu";
     }
 
     @FXML private void switchToLogin() throws IOException {
         App.setRoot("login");
+        App.previousScene = "mainMenu";
     }
 
     @FXML private void logoutButton() throws Exception {

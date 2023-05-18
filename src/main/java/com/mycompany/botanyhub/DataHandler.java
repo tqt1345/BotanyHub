@@ -46,7 +46,6 @@ public class DataHandler {
       // All products added to products list for easy access
       products.addAll(tools);
       products.addAll(plants);
-
    }
 
    // Saves all object arrays to a file via serialization
@@ -118,13 +117,3 @@ public class DataHandler {
     }
 
 }
-
-// Images
-   /*
-   public static String pruningShearsImage = "src/main/resources/images/pruningShearsTool.jpg";
-   public static String shovelImage = "src/main/resources/images/shovelTool.jpg";
-   public static String wateringCanImage = "src/main/resources/images/wateringCanTool.jpg";
-   public static String bonsaiTreeImage = "src/main/resources/images/bonsaiTreePlant.jpg";
-   public static String bambooPlantImage = "src/main/resources/images/bambooPlant.jpg";
-   public static String papayaPlantImage = "src/main/resources/images/papayaPlant.jpg";
-    */

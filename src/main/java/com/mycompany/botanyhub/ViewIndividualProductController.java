@@ -24,20 +24,12 @@ import javafx.scene.image.ImageView;
  */
 public class ViewIndividualProductController implements Initializable {
 
-    @FXML private TextArea productDetailsTextArea;
-    public static String currentProductName;
-    //@FXML private ImageView currentProductImage;
+    @FXML private TextArea productDetailsTextArea;  // Displays product details
+    public static String currentProductName;        // Holds name of current product
 
     private Product currentProduct;
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        setProduct(currentProductName);
 
-    }    
-
+    // Sets current product
     private void setProduct(String name) {
         try {
             currentProduct = ProductUtils.getProduct(name,DataHandler.products);
@@ -48,8 +40,11 @@ public class ViewIndividualProductController implements Initializable {
         }
     }
 
+    // Adds current product to logged-in user's cart
     @FXML private void addToCart() {
-        if (DataHandler.loggedInUser == null) {
+        final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
+        if (NOT_LOGGED_IN) {
+            // TODO throw an exception instead of showing an error
             Utils.Text.showError("Can't add to cart, must be logged in.");
             return;
         }
@@ -57,7 +52,14 @@ public class ViewIndividualProductController implements Initializable {
         Utils.Text.showConfirmation("Successfully added product to cart");
     }
 
+    // TODO should go back to previous page not hardcoded to viewProducts
     @FXML private void backButton() throws IOException {
         App.setRoot("viewProducts");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        setProduct(currentProductName);
+
     }
 }

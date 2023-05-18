@@ -23,31 +23,23 @@ import javafx.scene.control.ListView;
  */
 public class ViewPurchaseHistoryController implements Initializable {
 
-    @FXML private ListView<String> purchaseHistoryListView;
+    @FXML private ListView<String> purchaseHistoryListView; // Holds user's purchase history details
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-    @FXML
-    private void switchToMainMenu() throws Exception {
-        App.setRoot("mainMenu");
-    }
-
+    // Shows logged-in user's purchase history
     @FXML private void showPurchaseHistoryButton() {
         try {
             if (!isValid()) {
                 return;
             }
+            // Assign the logged-in user's purchase history to be displayed
             final ObservableList<String> PURCHASE_HISTORY = DataHandler.loggedInUser.getProductNamesInPurchaseHistory();
             purchaseHistoryListView.setItems(PURCHASE_HISTORY);
         } catch (Exception e) {
             Utils.Text.showError("Error while showing purchase history:\n " + e.getMessage());
         }
     }
+
+    // Validation checks
     private boolean isValid() {
         final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
         if (NOT_LOGGED_IN) {
@@ -61,5 +53,15 @@ public class ViewPurchaseHistoryController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    @FXML
+    private void switchToMainMenu() throws Exception {
+        App.setRoot("mainMenu");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }
 }

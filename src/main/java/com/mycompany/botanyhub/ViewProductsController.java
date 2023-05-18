@@ -35,13 +35,14 @@ public class ViewProductsController implements Initializable {
         App.setRoot("mainMenu");
     }
 
+    // Assigns clicked product details to viewIndividualProduct controller and switches to it
     @FXML private void handleImageClick(MouseEvent clickEvent) throws IOException {
         ImageView clickedImage = (ImageView) clickEvent.getSource();
-        ViewIndividualProductController.currentProductName = clickedImage.getId();
-        Utils.Text.showConfirmation("Clicked on: " + clickedImage.getId());
+        final String CLICKED_PRODUCT_NAME = clickedImage.getId();
+        ViewIndividualProductController.currentProductName = CLICKED_PRODUCT_NAME;
+        Utils.Text.showConfirmation("Clicked on: " + CLICKED_PRODUCT_NAME);
         App.setRoot("viewIndividualProduct");
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

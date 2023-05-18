@@ -25,16 +25,9 @@ import User.*;
  */
 public class ViewCartController implements Initializable {
 
-    @FXML private ListView<String> productsInCartListView;
+    @FXML private ListView<String> productsInCartListView; // Holds product details
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }
-
+    // Shows products in logged-in user's cart
     @FXML private void showCartButton() {
         try {
             if (!isValid()) {
@@ -51,11 +44,13 @@ public class ViewCartController implements Initializable {
         }
     }
 
+    // Removes a product from logged-in user's cart
     @FXML private void removeProductButton() {
         try {
             if (!isValid()) {
                 return;
             }
+            // TODO refactor this
             String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
             Product product = ProductUtils.getProduct(selectedProduct, DataHandler.loggedInUser.getCart());
             DataHandler.loggedInUser.getCart().remove(product);
@@ -66,6 +61,7 @@ public class ViewCartController implements Initializable {
         }
     }
 
+    // Takes user to the individual product page
     @FXML private void viewProductButton() {
         try {
             if (!isValid()) {
@@ -77,6 +73,7 @@ public class ViewCartController implements Initializable {
                 return;
             }
 
+            // TODO refactor this
             String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem(); // get product listing from listview
             Product product = ProductUtils.getProduct(selectedProduct, DataHandler.loggedInUser.getCart()); // get product object from listing
             ViewIndividualProductController.currentProductName = product.getName();
@@ -86,16 +83,7 @@ public class ViewCartController implements Initializable {
         }
     }
 
-    /*
-    private void getSelectedProduct() {
-        String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
-        Product product = ProductUtils.getProduct(selectedProduct, DataHandler.currentUser.getCart());
-    }
-
-
-
-     */
-
+    // Makes a purchase, moving products in cart to purchase history.
     @FXML private void makePurchaseButton () {
         try {
             if (!isValid()) {
@@ -107,6 +95,8 @@ public class ViewCartController implements Initializable {
             Utils.Text.showError("Error while making purchase:\n " + e.getMessage());
         }
     }
+
+    // Validation checks
     private boolean isValid() {
         final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
         if (NOT_LOGGED_IN) {
@@ -125,4 +115,13 @@ public class ViewCartController implements Initializable {
     private void switchToMainMenu() throws Exception {
         App.setRoot("mainMenu");
     }
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
 }

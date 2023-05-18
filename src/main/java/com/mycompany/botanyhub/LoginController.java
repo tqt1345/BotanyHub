@@ -20,18 +20,21 @@ import User.*;
  */
 public class LoginController implements Initializable {
 
+    // TextFields
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
-
     private TextField[] inputFields;
-    StringBuilder errorMessage;
 
+    StringBuilder errorMessage; // Holds error messages
+
+    // Handles login functionality
     @FXML private void loginButton() {
         final String USERNAME = usernameField.getText();
         final String PASSWORD = passwordField.getText();
+        final boolean ALREADY_LOGGED_IN = DataHandler.loggedInUser != null;
         try {
-            if (DataHandler.loggedInUser != null) {
-                throw new Exception("Can't perform action, user is already logged in.\nPlease log out first.");
+            if (ALREADY_LOGGED_IN) {
+                throw new Exception("There is no user logged in.");
             }
             UserUtils.login(USERNAME, PASSWORD, DataHandler.customers);
             Utils.Text.showConfirmation("Login successful");
