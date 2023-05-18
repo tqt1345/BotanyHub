@@ -5,10 +5,16 @@
 package com.mycompany.botanyhub;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import Product.Product;
+import User.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
 
 /**
  * FXML Controller class
@@ -16,6 +22,8 @@ import javafx.fxml.Initializable;
  * @author tqt13
  */
 public class ViewPurchaseHistoryController implements Initializable {
+
+    @FXML private ListView<String> purchaseHistoryListView;
 
     /**
      * Initializes the controller class.
@@ -27,5 +35,31 @@ public class ViewPurchaseHistoryController implements Initializable {
     @FXML
     private void switchToMainMenu() throws Exception {
         App.setRoot("mainMenu");
+    }
+
+    @FXML private void showPurchaseHistoryButton() {
+        try {
+            if (!isValid()) {
+                return;
+            }
+            final ObservableList<String> PURCHASE_HISTORY = DataHandler.loggedInUser.getProductNamesInPurchaseHistory();
+            purchaseHistoryListView.setItems(PURCHASE_HISTORY);
+        } catch (Exception e) {
+            Utils.Text.showError("Error while showing purchase history:\n " + e.getMessage());
+        }
+    }
+    private boolean isValid() {
+        final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
+        if (NOT_LOGGED_IN) {
+            Utils.Text.showError("Can't perform action, user is not logged in.");
+            return false;
+        }
+
+        final boolean CART_IS_EMPTY = DataHandler.loggedInUser.getPurchaseHistory().isEmpty();
+        if (CART_IS_EMPTY) {
+            Utils.Text.showError("Can't perform action, no purchase history");
+            return false;
+        }
+        return true;
     }
 }

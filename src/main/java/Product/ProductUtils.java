@@ -1,5 +1,10 @@
 package Product;
 
+import com.mycompany.botanyhub.DataHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductUtils {
@@ -12,4 +17,13 @@ public class ProductUtils {
         }
         return null;
     }
+
+    public static ObservableList<String> getProductNamesAsObservableList (List<? extends Product> products) {
+        ObservableList<String> productNames = FXCollections.observableArrayList();
+        for (Product product : products) {
+            productNames.add(product.getName());
+        }
+        return productNames;
+    }
+
 }

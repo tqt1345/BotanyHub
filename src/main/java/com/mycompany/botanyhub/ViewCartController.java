@@ -93,7 +93,20 @@ public class ViewCartController implements Initializable {
     }
 
 
+
      */
+
+    @FXML private void makePurchaseButton () {
+        try {
+            if (!isValid()) {
+                return;
+            }
+            DataHandler.loggedInUser.makePurchase();
+            Utils.Text.showConfirmation("Successfully made purchase");
+        } catch (Exception e) {
+            Utils.Text.showError("Error while making purchase:\n " + e.getMessage());
+        }
+    }
     private boolean isValid() {
         final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
         if (NOT_LOGGED_IN) {

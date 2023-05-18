@@ -1,5 +1,6 @@
 package User;
 import Product.*;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -10,4 +11,14 @@ public interface User {
     String getPassword();
     void addProductToCart(Product product);
     ArrayList<Product> getCart();
+    double getTotalCost();
+    void makePurchase();
+    ObservableList<String> showCart();
+    ObservableList<String> showPurchaseHistory();
+    ObservableList<String> getProductNamesInCart();
+    ObservableList<String> getProductNamesInPurchaseHistory();
+    ArrayList<Product> getPurchaseHistory();
+
+
+
 }

@@ -1,8 +1,10 @@
 package User;
 
+import Product.Product;
 import com.mycompany.botanyhub.DataHandler;
-
+import javafx.collections.ObservableList;
 import java.util.ArrayList;
+import Product.*;
 
 public class UserUtils {
 
@@ -46,4 +48,17 @@ public class UserUtils {
         }
         return isValid;
     }
+
+    /*
+    public static ObservableList<String> showCart () {
+        final ArrayList<Product> PRODUCTS_IN_CART = DataHandler.loggedInUser.getCart();
+        return ProductUtils.getProductNamesAsObservableList(PRODUCTS_IN_CART);
+    }
+
+    public static ObservableList<String> showPurchaseHistory () {
+        final ArrayList<Product> PURCHASE_HISTORY = DataHandler.loggedInUser.getPurchaseHistory();
+        return ProductUtils.getProductNamesAsObservableList(PURCHASE_HISTORY);
+    }
+
+     */
 }

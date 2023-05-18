@@ -30,6 +30,9 @@ public class LoginController implements Initializable {
         final String USERNAME = usernameField.getText();
         final String PASSWORD = passwordField.getText();
         try {
+            if (DataHandler.loggedInUser != null) {
+                throw new Exception("Can't perform action, user is already logged in.\nPlease log out first.");
+            }
             UserUtils.login(USERNAME, PASSWORD, DataHandler.customers);
             Utils.Text.showConfirmation("Login successful");
             Utils.Text.clearFields(inputFields);

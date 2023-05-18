@@ -18,12 +18,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <HBox layoutX="98.0" layoutY="294.0" prefHeight="59.0" prefWidth="481.0">
+            <HBox layoutX="76.0" layoutY="283.0" prefHeight="59.0" prefWidth="481.0">
                <children>
                   <Button mnemonicParsing="false" text="Purchase Items" />
                   <Button mnemonicParsing="false" onAction="#showCartButton" text="Show Cart" />
                   <Button mnemonicParsing="false" onAction="#viewProductButton" text="View Product" />
                   <Button mnemonicParsing="false" onAction="#removeProductButton" text="Remove Product" />
+                  <Button mnemonicParsing="false" onAction="#makePurchaseButton" text="Make Purchase" />
                   <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
                </children>
             </HBox>
