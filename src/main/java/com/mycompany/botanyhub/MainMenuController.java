@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import User.*;
-import Product.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

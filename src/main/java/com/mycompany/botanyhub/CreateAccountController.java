@@ -3,6 +3,7 @@ package com.mycompany.botanyhub;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import User.*;
@@ -32,8 +33,8 @@ public class CreateAccountController implements Initializable {
             final String USERNAME = usernameField.getText();
             final String PASSWORD = passwordField.getText();
 
-            if (isValidInput(USERNAME, PASSWORD)) {
-                Customer newCustomer = makeCustomer();
+            if (isValidInput(USERNAME, PASSWORD, DataHandler.customers)) {
+                Customer newCustomer = makeCustomer(usernameField, passwordField);
                 DataHandler.customers.add(newCustomer);
                 Utils.Text.showConfirmation("Account created successfully");
                 Utils.Text.clearFields(inputFields);
@@ -46,11 +47,17 @@ public class CreateAccountController implements Initializable {
         }
     }
 
-    // Checks if user input is valid
-    private boolean isValidInput(String username, String password) {
+    /* Validation checks for input when creating a new account:
+        - Is the username empty?
+        - Does the username contain spaces?
+        - Does the username contain quotation marks?
+        - Does the username already exist?
+        - Is the password empty?
+        - Does the password contain spaces?
+     */
+    private boolean isValidInput(String username, String password, ArrayList<? extends User> userList) {
         boolean isValid = true;
 
-        try {
             if (username.isEmpty()) {
                 errorMessage.append("Username cannot be empty\n");
                 isValid = false;
@@ -59,7 +66,7 @@ public class CreateAccountController implements Initializable {
                 errorMessage.append("Username cannot contain spaces or quotations\n");
                 isValid = false;
             }
-            if (UserUtils.usernameExists(username, DataHandler.customers)) {
+            if (UserUtils.usernameExists(username, userList)) {
                 errorMessage.append("Username already exists\n");
                 isValid = false;
             }
@@ -67,15 +74,11 @@ public class CreateAccountController implements Initializable {
                 errorMessage.append("Password cannot be empty or contain spaces\n");
                 isValid = false;
             }
-
-        } catch (Exception e) {
-            Utils.Text.showError("Error validating user input\n" + e.getMessage());
-        }
         return isValid;
     }
 
     // Builds and returns new customer object
-    private Customer makeCustomer() {
+    private Customer makeCustomer(TextField usernameField, TextField passwordField) {
         final String USERNAME = usernameField.getText();
         final String PASSWORD = passwordField.getText();
 

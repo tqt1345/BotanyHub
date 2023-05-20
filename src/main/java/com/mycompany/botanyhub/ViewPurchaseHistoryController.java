@@ -5,12 +5,9 @@
 package com.mycompany.botanyhub;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import Product.Product;
-import User.User;
-import javafx.collections.FXCollections;
+import User.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,11 +25,13 @@ public class ViewPurchaseHistoryController implements Initializable {
     // Shows logged-in user's purchase history
     @FXML private void showPurchaseHistoryButton() {
         try {
-            if (!isValid()) {
+            Customer customer;
+            if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
+            customer = (Customer) DataHandler.loggedInUser;
             // Assign the logged-in user's purchase history to be displayed
-            final ObservableList<String> PURCHASE_HISTORY = DataHandler.loggedInUser.getProductNamesInPurchaseHistory();
+            final ObservableList<String> PURCHASE_HISTORY = customer.getProductNamesInPurchaseHistory();
             purchaseHistoryListView.setItems(PURCHASE_HISTORY);
         } catch (Exception e) {
             Utils.Text.showError("Error while showing purchase history:\n " + e.getMessage());
@@ -40,14 +39,20 @@ public class ViewPurchaseHistoryController implements Initializable {
     }
 
     // Validation checks
-    private boolean isValid() {
-        final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
+    private boolean isValid(User loggedInUser) {
+        Customer customer;
+        final boolean NOT_LOGGED_IN = loggedInUser == null;
         if (NOT_LOGGED_IN) {
             Utils.Text.showError("Can't perform action, user is not logged in.");
             return false;
         }
-
-        final boolean CART_IS_EMPTY = DataHandler.loggedInUser.getPurchaseHistory().isEmpty();
+        final boolean NOT_CUSTOMER = !(loggedInUser instanceof Customer);
+        if (NOT_CUSTOMER) {
+            Utils.Text.showError("Can't perform action, user is not a customer.");
+            return false;
+        }
+        customer = (Customer) loggedInUser;
+        final boolean CART_IS_EMPTY = customer.getPurchaseHistory().isEmpty();
         if (CART_IS_EMPTY) {
             Utils.Text.showError("Can't perform action, no purchase history");
             return false;

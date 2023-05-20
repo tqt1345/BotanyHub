@@ -8,12 +8,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import Product.*;
 import User.*;
@@ -30,12 +28,15 @@ public class ViewCartController implements Initializable {
     // Shows products in logged-in user's cart
     @FXML private void showCartButton() {
         try {
-            if (!isValid()) {
+            Customer customer;
+            if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
+
+            customer = (Customer) DataHandler.loggedInUser;
             ObservableList<String> products = FXCollections.observableArrayList();
-            final ArrayList<Product> USER_CART = DataHandler.loggedInUser.getCart();
-            for (Product product : USER_CART) {
+            final ArrayList<Product> CUSTOMER_CART = customer.getCart();
+            for (Product product : CUSTOMER_CART) {
                 products.add(product.getName());
             }
             productsInCartListView.setItems(products);
@@ -47,13 +48,15 @@ public class ViewCartController implements Initializable {
     // Removes a product from logged-in user's cart
     @FXML private void removeProductButton() {
         try {
-            if (!isValid()) {
+            Customer customer;
+            if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
+            customer = (Customer) DataHandler.loggedInUser;
             // TODO refactor this
             String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
-            Product product = ProductUtils.getProduct(selectedProduct, DataHandler.loggedInUser.getCart());
-            DataHandler.loggedInUser.getCart().remove(product);
+            Product product = ProductUtils.getProduct(selectedProduct, customer.getCart());
+            customer.getCart().remove(product);
             productsInCartListView.getItems().remove(selectedProduct);
             Utils.Text.showConfirmation("Successfully removed product from cart");
         } catch (Exception e) {
@@ -64,9 +67,11 @@ public class ViewCartController implements Initializable {
     // Takes user to the individual product page
     @FXML private void viewProductButton() {
         try {
-            if (!isValid()) {
+            Customer customer;
+            if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
+            customer = (Customer) DataHandler.loggedInUser;
             final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().getSelectedItem() == null;
             if (NO_PRODUCT_SELECTED) {
                 Utils.Text.showError("Please select a product to view");
@@ -75,7 +80,7 @@ public class ViewCartController implements Initializable {
 
             // TODO refactor this
             String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem(); // get product listing from listview
-            Product product = ProductUtils.getProduct(selectedProduct, DataHandler.loggedInUser.getCart()); // get product object from listing
+            Product product = ProductUtils.getProduct(selectedProduct, customer.getCart()); // get product object from listing
             ViewIndividualProductController.currentProductName = product.getName();
             App.setRoot("viewIndividualProduct");
         } catch (Exception e) {
@@ -86,25 +91,41 @@ public class ViewCartController implements Initializable {
     // Makes a purchase, moving products in cart to purchase history.
     @FXML private void makePurchaseButton () {
         try {
-            if (!isValid()) {
+            Customer customer;
+            if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
-            DataHandler.loggedInUser.makePurchase();
+            customer = (Customer) DataHandler.loggedInUser;
+            customer.makePurchase();
             Utils.Text.showConfirmation("Successfully made purchase");
         } catch (Exception e) {
             Utils.Text.showError("Error while making purchase:\n " + e.getMessage());
         }
     }
 
-    // Validation checks
-    private boolean isValid() {
-        final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
+    /* Validation checks:
+    - User is logged in?
+    - User is a customer?
+    - Cart is empty?
+     */
+    private boolean isValid(User loggedInUser) {
+        Customer customer;
+
+        final boolean NOT_LOGGED_IN = loggedInUser == null;
         if (NOT_LOGGED_IN) {
             Utils.Text.showError("Can't perform action, user is not logged in.");
             return false;
         }
 
-        final boolean CART_IS_EMPTY = DataHandler.loggedInUser.getCart().isEmpty();
+        final boolean IS_CUSTOMER = loggedInUser instanceof Customer;
+        if (IS_CUSTOMER) {
+            customer = (Customer) loggedInUser;
+        } else {
+            Utils.Text.showError("Can't perform action, user is not a customer.");
+            return false;
+        }
+
+        final boolean CART_IS_EMPTY = customer.getCart().isEmpty();
         if (CART_IS_EMPTY) {
             Utils.Text.showError("Can't perform action, cart is empty.");
             return false;
