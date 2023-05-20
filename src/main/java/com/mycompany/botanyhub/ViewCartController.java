@@ -97,6 +97,7 @@ public class ViewCartController implements Initializable {
             }
             customer = (Customer) DataHandler.loggedInUser;
             customer.makePurchase();
+            productsInCartListView.getItems().clear();
             Utils.Text.showConfirmation("Successfully made purchase");
         } catch (Exception e) {
             Utils.Text.showError("Error while making purchase:\n " + e.getMessage());
