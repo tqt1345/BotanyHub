@@ -7,10 +7,12 @@ import User.*;
 public class Utils {
     public static class Text { // Various text and alert methods
 
-        // Prints a separator line
+        /*
         public static String separator(int count) {
             return ("*" + "~".repeat(count) + "*");
         }
+
+         */
 
         // Displays a confirmation message as a JavaFX alert
         public static void showConfirmation(String message) {

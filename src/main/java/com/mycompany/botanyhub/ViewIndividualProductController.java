@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import User.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
@@ -33,6 +34,7 @@ public class ViewIndividualProductController implements Initializable {
     private void setProduct(String name) {
         try {
             currentProduct = ProductUtils.getProduct(name,DataHandler.products);
+            assert currentProduct != null;
             productDetailsTextArea.setText(currentProduct.toString());
 
         } catch (Exception e) {
@@ -42,13 +44,25 @@ public class ViewIndividualProductController implements Initializable {
 
     // Adds current product to logged-in user's cart
     @FXML private void addToCart() {
+        Customer customer;
+
+        // Validation checks
         final boolean NOT_LOGGED_IN = DataHandler.loggedInUser == null;
         if (NOT_LOGGED_IN) {
             // TODO throw an exception instead of showing an error
             Utils.Text.showError("Can't add to cart, must be logged in.");
             return;
         }
-        DataHandler.loggedInUser.addProductToCart(currentProduct);
+
+        final boolean NOT_CUSTOMER = !(DataHandler.loggedInUser instanceof Customer);
+        if (NOT_CUSTOMER) {
+            Utils.Text.showError("Can't add to cart, must be a customer.");
+            return;
+        }
+
+        // Add selected product to cart
+        customer = (Customer) DataHandler.loggedInUser;
+        customer.addProductToCart(currentProduct);
         Utils.Text.showConfirmation("Successfully added product to cart");
     }
 

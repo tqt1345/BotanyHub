@@ -12,10 +12,10 @@ public class DataHandler {
 
    // User Lists
    public static ArrayList<Customer> customers = new ArrayList<>();
-   public static ArrayList<Administrator> administrators = new ArrayList<>();
+   // public static ArrayList<Administrator> administrators = new ArrayList<>();
 
    // User status
-   public static User loggedInUser; // currently logged-in user
+   public  static User loggedInUser; // currently logged-in user
    private static final String DEFAULT_USER_STATUS = "Not Logged In";
    public static final StringProperty loggedInUsername = new SimpleStringProperty(DEFAULT_USER_STATUS);
 
@@ -56,7 +56,7 @@ public class DataHandler {
 
          // Write arrays to file
          output.writeObject(customers);
-         output.writeObject(administrators);
+         // output.writeObject(administrators);
          output.writeObject(tools);
          output.writeObject(plants);
          output.writeObject(products);
@@ -75,7 +75,7 @@ public class DataHandler {
 
          // Load arrays from file
          customers = (ArrayList<Customer>) input.readObject();
-         administrators = (ArrayList<Administrator>) input.readObject();
+         // administrators = (ArrayList<Administrator>) input.readObject();
          tools = (ArrayList<Tool>) input.readObject();
          plants = (ArrayList<Plant>) input.readObject();
          products = (ArrayList<Product>) input.readObject();
@@ -106,7 +106,7 @@ public class DataHandler {
     // Clears all user data from data.ser file
     public static void clearUserData() {
           customers.clear();
-          administrators.clear();
+          // administrators.clear();
           clearCurrentUser();
     }
 
