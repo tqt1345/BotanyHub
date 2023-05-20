@@ -34,7 +34,7 @@ public class CreateAccountController implements Initializable {
             final String PASSWORD = passwordField.getText();
 
             if (isValidInput(USERNAME, PASSWORD, DataHandler.customers)) {
-                Customer newCustomer = makeCustomer(usernameField, passwordField);
+                Customer newCustomer = makeCustomer(USERNAME, PASSWORD);
                 DataHandler.customers.add(newCustomer);
                 Utils.Text.showConfirmation("Account created successfully");
                 Utils.Text.clearFields(inputFields);
@@ -78,11 +78,8 @@ public class CreateAccountController implements Initializable {
     }
 
     // Builds and returns new customer object
-    private Customer makeCustomer(TextField usernameField, TextField passwordField) {
-        final String USERNAME = usernameField.getText();
-        final String PASSWORD = passwordField.getText();
-
-        return new Customer(USERNAME, PASSWORD);
+    private Customer makeCustomer(String username, String password) {
+        return new Customer(username, password);
     }
 
     private void clearErrorMessage() {
