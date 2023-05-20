@@ -14,15 +14,15 @@ public class DataHandler {
    public static ArrayList<Customer> customers = new ArrayList<>();
    public static ArrayList<Administrator> administrators = new ArrayList<>();
 
-   // Product Lists
-   public static ArrayList<Tool> tools = new ArrayList<>();
-   public static ArrayList<Plant> plants = new ArrayList<>();
-   public static ArrayList<Product> products = new ArrayList<>();
-
    // User status
    public static User loggedInUser; // currently logged-in user
    private static final String DEFAULT_USER_STATUS = "Not Logged In";
    public static final StringProperty loggedInUsername = new SimpleStringProperty(DEFAULT_USER_STATUS);
+
+   // Product Lists
+   public static ArrayList<Tool> tools = new ArrayList<>();
+   public static ArrayList<Plant> plants = new ArrayList<>();
+   public static ArrayList<Product> products = new ArrayList<>();
 
    // Sets the user status with the user and username
    public static void setUserStatus(User user, String username) {

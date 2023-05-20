@@ -20,18 +20,7 @@ import javafx.scene.control.Label;
  * @author tqt13
  */
 public class MainMenuController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-
     @FXML private Label currentUserLabel; // Displays username of logged-in user
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
-    }
 
     @FXML private void switchToCreateAccount() throws IOException {
         App.setRoot("createAccount");
@@ -92,7 +81,10 @@ public class MainMenuController implements Initializable {
 
          */
     }
-
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
+    }
 
 
 }
