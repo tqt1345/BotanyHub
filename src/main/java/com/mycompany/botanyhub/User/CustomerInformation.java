@@ -1,4 +1,4 @@
-package User;
+package com.mycompany.botanyhub.User;
 
 public class
 CustomerInformation extends UserInformation {

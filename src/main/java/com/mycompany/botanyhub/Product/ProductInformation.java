@@ -1,4 +1,4 @@
-package Product;
+package com.mycompany.botanyhub.Product;
 
 import java.io.Serializable;
 

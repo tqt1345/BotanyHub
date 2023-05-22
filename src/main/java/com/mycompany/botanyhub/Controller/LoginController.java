@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.botanyhub;
+package com.mycompany.botanyhub.Controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+import com.mycompany.botanyhub.App;
+import com.mycompany.botanyhub.DataHandler;
+import com.mycompany.botanyhub.User.UserUtils;
+import com.mycompany.botanyhub.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import User.*;
 
 /**
  * FXML Controller class
@@ -34,7 +35,7 @@ public class LoginController implements Initializable {
         final boolean ALREADY_LOGGED_IN = DataHandler.loggedInUser != null;
         try {
             if (ALREADY_LOGGED_IN) {
-                throw new Exception("There is no user logged in.");
+                throw new Exception("You are already logged in to an account\n Please logout first to switch accounts.");
             }
             UserUtils.login(USERNAME, PASSWORD, DataHandler.customers);
             Utils.Text.showConfirmation("Login successful");

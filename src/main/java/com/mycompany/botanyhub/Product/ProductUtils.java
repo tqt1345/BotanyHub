@@ -1,10 +1,8 @@
-package Product;
+package com.mycompany.botanyhub.Product;
 
-import com.mycompany.botanyhub.DataHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductUtils {

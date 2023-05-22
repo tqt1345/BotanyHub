@@ -1,6 +1,4 @@
-package Product;
-
-import javafx.scene.image.Image;
+package com.mycompany.botanyhub.Product;
 
 // Plant class handles manipulation of plant objects
 public class Plant extends Product{

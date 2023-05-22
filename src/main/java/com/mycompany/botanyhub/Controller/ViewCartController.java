@@ -2,19 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.botanyhub;
+package com.mycompany.botanyhub.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.mycompany.botanyhub.App;
+import com.mycompany.botanyhub.DataHandler;
+import com.mycompany.botanyhub.Product.Product;
+import com.mycompany.botanyhub.Product.ProductUtils;
+import com.mycompany.botanyhub.User.Customer;
+import com.mycompany.botanyhub.User.User;
+import com.mycompany.botanyhub.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import Product.*;
-import User.*;
+
 
 /**
  * FXML Controller class
@@ -97,6 +103,7 @@ public class ViewCartController implements Initializable {
             }
             customer = (Customer) DataHandler.loggedInUser;
             customer.makePurchase();
+            productsInCartListView.getItems().clear();
             Utils.Text.showConfirmation("Successfully made purchase");
         } catch (Exception e) {
             Utils.Text.showError("Error while making purchase:\n " + e.getMessage());
@@ -108,6 +115,7 @@ public class ViewCartController implements Initializable {
     - User is a customer?
     - Cart is empty?
      */
+    // TODO refactor this and other similar validation methods into one method somewhere maybe?
     private boolean isValid(User loggedInUser) {
         Customer customer;
 

@@ -6,6 +6,8 @@ module com.mycompany.botanyhub {
 
     opens com.mycompany.botanyhub to javafx.fxml;
     exports com.mycompany.botanyhub;
-    exports User;
-    opens User to javafx.fxml;
+    exports com.mycompany.botanyhub.User;
+    opens com.mycompany.botanyhub.User to javafx.fxml;
+    exports com.mycompany.botanyhub.Controller;
+    opens com.mycompany.botanyhub.Controller to javafx.fxml;
 }

@@ -1,6 +1,4 @@
-package Product;
-
-import javafx.scene.image.Image;
+package com.mycompany.botanyhub.Product;
 
 // Tool class handles manipulation of tool objects
 public class Tool extends Product {

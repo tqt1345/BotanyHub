@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.botanyhub;
+package com.mycompany.botanyhub.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import User.*;
+import com.mycompany.botanyhub.App;
+import com.mycompany.botanyhub.DataHandler;
+import com.mycompany.botanyhub.User.Customer;
+import com.mycompany.botanyhub.User.User;
+import com.mycompany.botanyhub.Utils;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

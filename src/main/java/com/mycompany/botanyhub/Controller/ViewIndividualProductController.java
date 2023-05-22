@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.botanyhub;
+package com.mycompany.botanyhub.Controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-import User.Customer;
+import com.mycompany.botanyhub.App;
+import com.mycompany.botanyhub.DataHandler;
+import com.mycompany.botanyhub.User.Customer;
+import com.mycompany.botanyhub.Product.Product;
+import com.mycompany.botanyhub.Product.ProductUtils;
+import com.mycompany.botanyhub.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-
-import Product.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -33,7 +33,7 @@ public class ViewIndividualProductController implements Initializable {
     // Sets current product
     private void setProduct(String name) {
         try {
-            currentProduct = ProductUtils.getProduct(name,DataHandler.products);
+            currentProduct = ProductUtils.getProduct(name, DataHandler.products);
             assert currentProduct != null;
             productDetailsTextArea.setText(currentProduct.toString());
 

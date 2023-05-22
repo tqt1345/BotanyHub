@@ -1,8 +1,8 @@
-package User;
+package com.mycompany.botanyhub.User;
 
-import Product.*;
+import com.mycompany.botanyhub.Product.Product;
+import com.mycompany.botanyhub.Product.ProductUtils;
 import javafx.collections.ObservableList;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 

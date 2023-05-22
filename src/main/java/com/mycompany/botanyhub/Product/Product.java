@@ -1,7 +1,5 @@
-package Product;
+package com.mycompany.botanyhub.Product;
 
-
-import javafx.scene.image.Image;
 
 import java.io.Serializable;
 
