@@ -27,6 +27,7 @@ public class ViewIndividualProductController implements Initializable {
 
     @FXML private TextArea productDetailsTextArea;  // Displays product details
     public static String currentProductName;        // Holds name of current product
+    private static String previousPage;
 
     private Product currentProduct;
 
@@ -66,10 +67,15 @@ public class ViewIndividualProductController implements Initializable {
         Utils.Text.showConfirmation("Successfully added product to cart");
     }
 
+
+    public static void setPreviousPage(String page) {
+        previousPage = page;
+    }
     // TODO should go back to previous page not hardcoded to viewProducts
     @FXML private void backButton() throws IOException {
-        App.setRoot("viewProducts");
+        App.setRoot(previousPage);
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

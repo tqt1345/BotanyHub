@@ -31,6 +31,7 @@ public class CreateAccountController implements Initializable {
     private TextField[] inputFields;
 
     StringBuilder errorMessage = new StringBuilder();
+    private static String previousPage;
 
     // Submit button creates a new user
     @FXML private void submitButton () {
@@ -91,12 +92,16 @@ public class CreateAccountController implements Initializable {
         errorMessage.setLength(0);
     }
 
+    public static void setPreviousPage (String page) {
+        previousPage = page;
+    }
     @FXML private void switchToMainMenu() throws IOException {
-        App.setRoot("mainMenu");
+        App.setRoot(previousPage);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inputFields = new TextField[] {usernameField, passwordField};
+        previousPage = "mainMenu";
     }
 }

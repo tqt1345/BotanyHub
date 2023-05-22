@@ -25,6 +25,7 @@ public class ViewPurchaseHistoryController implements Initializable {
 
     @FXML private ListView<String> purchaseHistoryListView; // Holds user's purchase history details
 
+    private static String previousPage;
     // Shows logged-in user's purchase history
     @FXML private void showPurchaseHistoryButton() {
         try {
@@ -63,9 +64,12 @@ public class ViewPurchaseHistoryController implements Initializable {
         return true;
     }
 
+    public static void setPreviousPage(String page) {
+        previousPage = page;
+    }
     @FXML
     private void switchToMainMenu() throws Exception {
-        App.setRoot("mainMenu");
+        App.setRoot(previousPage);
     }
 
     @Override

@@ -30,6 +30,7 @@ import javafx.scene.control.ListView;
 public class ViewCartController implements Initializable {
 
     @FXML private ListView<String> productsInCartListView; // Holds product details
+    private static String previousPage;
 
     // Shows products in logged-in user's cart
     @FXML private void showCartButton() {
@@ -87,7 +88,9 @@ public class ViewCartController implements Initializable {
             // TODO refactor this
             String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem(); // get product listing from listview
             Product product = ProductUtils.getProduct(selectedProduct, customer.getCart()); // get product object from listing
+            assert product != null;
             ViewIndividualProductController.currentProductName = product.getName();
+            ViewIndividualProductController.setPreviousPage("viewCart");
             App.setRoot("viewIndividualProduct");
         } catch (Exception e) {
             Utils.Text.showError("Error while viewing product:\n " + e.getMessage());
@@ -140,9 +143,14 @@ public class ViewCartController implements Initializable {
         }
         return true;
     }
+
+    public static void setPreviousPage(String page) {
+        previousPage = page;
+    }
+
     @FXML
     private void switchToMainMenu() throws Exception {
-        App.setRoot("mainMenu");
+        App.setRoot(previousPage);
     }
 
     /**

@@ -26,12 +26,12 @@ public class MainMenuController implements Initializable {
 
     @FXML private void switchToCreateAccount() throws IOException {
         App.setRoot("createAccount");
-        App.previousScene = "mainMenu";
+        CreateAccountController.setPreviousPage("mainMenu");
     }
 
     @FXML private void switchToLogin() throws IOException {
         App.setRoot("login");
-        App.previousScene = "mainMenu";
+        LoginController.setPreviousPage("mainMenu");
     }
 
     @FXML private void logoutButton() throws Exception {
@@ -47,6 +47,7 @@ public class MainMenuController implements Initializable {
     @FXML private void switchToViewProducts() throws IOException {
         try {
             App.setRoot("viewProducts");
+            ViewProductsController.setPreviousPage("mainMenu");
 
         } catch (Exception e) {
             Utils.Text.showError(e.getMessage());
@@ -54,9 +55,11 @@ public class MainMenuController implements Initializable {
     }
     @FXML private void switchToViewCart() throws IOException {
         App.setRoot("viewCart");
+        ViewCartController.setPreviousPage("mainMenu");
     }
     @FXML private void switchToViewPurchaseHistory() throws IOException {
         App.setRoot("viewPurchaseHistory");
+        ViewPurchaseHistoryController.setPreviousPage("mainMenu");
     }
     @FXML private void exitButton() throws IOException {
         App.exit();

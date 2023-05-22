@@ -27,6 +27,7 @@ public class LoginController implements Initializable {
     private TextField[] inputFields;
 
     StringBuilder errorMessage; // Holds error messages
+    private static String previousPage;
 
     // Handles login functionality
     @FXML private void loginButton() {
@@ -45,8 +46,11 @@ public class LoginController implements Initializable {
         }
     }
 
+    public static void setPreviousPage(String page) {
+        previousPage = page;
+    }
     @FXML private void switchToMainMenu() throws Exception {
-        App.setRoot("mainMenu");
+        App.setRoot(previousPage);
     }
     /**
      * Initializes the controller class.

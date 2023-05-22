@@ -32,10 +32,13 @@ public class ViewProductsController implements Initializable {
     @FXML private ImageView bambooPlantImage;
 
     @FXML private Label currentUserLabel;
+    private static String previousPage;
 
-    @FXML
-    private void switchToMainMenu() throws Exception {
-        App.setRoot("mainMenu");
+    public static void setPreviousPage(String page) {
+        previousPage = page;
+    }
+    @FXML private void switchToMainMenu() throws Exception {
+        App.setRoot(previousPage);
     }
 
     // Assigns clicked product details to viewIndividualProduct controller and switches to it
