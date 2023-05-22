@@ -1,11 +1,14 @@
 package com.mycompany.botanyhub;
 
+import com.mycompany.botanyhub.Product.Plant;
+import com.mycompany.botanyhub.Product.Product;
+import com.mycompany.botanyhub.Product.Tool;
+import com.mycompany.botanyhub.User.Customer;
+import com.mycompany.botanyhub.User.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import java.io.*;
 import java.util.ArrayList;
-import User.*;
-import Product.*;
 
 
 public class DataHandler {

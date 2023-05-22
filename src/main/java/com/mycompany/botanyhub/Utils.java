@@ -2,7 +2,6 @@ package com.mycompany.botanyhub;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import User.*;
 
 public class Utils {
     public static class Text { // Various text and alert methods

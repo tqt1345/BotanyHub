@@ -1,4 +1,4 @@
-package User;
+package com.mycompany.botanyhub.User;
 
 import java.io.Serializable;
 

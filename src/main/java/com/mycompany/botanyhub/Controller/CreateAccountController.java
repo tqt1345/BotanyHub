@@ -1,12 +1,17 @@
 
-package com.mycompany.botanyhub;
+package com.mycompany.botanyhub.Controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import User.*;
+import com.mycompany.botanyhub.App;
+import com.mycompany.botanyhub.DataHandler;
+import com.mycompany.botanyhub.User.Customer;
+import com.mycompany.botanyhub.User.User;
+import com.mycompany.botanyhub.User.UserUtils;
+import com.mycompany.botanyhub.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;

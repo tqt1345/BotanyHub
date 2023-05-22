@@ -1,10 +1,7 @@
-package User;
+package com.mycompany.botanyhub.User;
 
-import Product.Product;
 import com.mycompany.botanyhub.DataHandler;
-import javafx.collections.ObservableList;
 import java.util.ArrayList;
-import Product.*;
 
 public class UserUtils {
 
