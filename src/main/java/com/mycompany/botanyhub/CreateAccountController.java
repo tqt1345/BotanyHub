@@ -1,17 +1,13 @@
 
-package com.mycompany.botanyhub.Controller;
+package com.mycompany.botanyhub;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import com.mycompany.botanyhub.App;
-import com.mycompany.botanyhub.DataHandler;
 import com.mycompany.botanyhub.User.Customer;
 import com.mycompany.botanyhub.User.User;
 import com.mycompany.botanyhub.User.UserUtils;
-import com.mycompany.botanyhub.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -30,8 +26,8 @@ public class CreateAccountController implements Initializable {
     // TextField arrays
     private TextField[] inputFields;
 
-    StringBuilder errorMessage = new StringBuilder();
-    private static String previousPage;
+    StringBuilder errorMessage = new StringBuilder();   // Holds error messages
+    private static String previousPage;                 // Holds previous page FXML
 
     // Submit button creates a new user
     @FXML private void submitButton () {
@@ -95,7 +91,7 @@ public class CreateAccountController implements Initializable {
     public static void setPreviousPage (String page) {
         previousPage = page;
     }
-    @FXML private void switchToMainMenu() throws IOException {
+    @FXML private void backButton() throws IOException {
         App.setRoot(previousPage);
     }
 

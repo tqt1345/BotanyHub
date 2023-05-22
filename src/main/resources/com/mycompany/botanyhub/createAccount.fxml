@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="CreateAccount" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.mycompany.botanyhub.Controller.CreateAccountController">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="CreateAccount" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.botanyhub.CreateAccountController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
@@ -28,7 +28,7 @@
                   <Label text="Password" GridPane.rowIndex="1" />
                   <TextField fx:id="usernameField" promptText="Enter a username" GridPane.columnIndex="1" />
                   <TextField fx:id="passwordField" promptText="Enter a password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#backButton" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#submitButton" text="Submit" GridPane.rowIndex="2" />
                </children>
             </GridPane>

@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package com.mycompany.botanyhub.Controller;
+
+package com.mycompany.botanyhub;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.mycompany.botanyhub.App;
-import com.mycompany.botanyhub.DataHandler;
 import com.mycompany.botanyhub.User.UserUtils;
-import com.mycompany.botanyhub.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -26,8 +20,8 @@ public class LoginController implements Initializable {
     @FXML private TextField passwordField;
     private TextField[] inputFields;
 
-    StringBuilder errorMessage; // Holds error messages
-    private static String previousPage;
+    StringBuilder errorMessage;             // Holds error messages
+    private static String previousPage;     // Holds previous page FXML
 
     // Handles login functionality
     @FXML private void loginButton() {
@@ -49,7 +43,7 @@ public class LoginController implements Initializable {
     public static void setPreviousPage(String page) {
         previousPage = page;
     }
-    @FXML private void switchToMainMenu() throws Exception {
+    @FXML private void backButton() throws Exception {
         App.setRoot(previousPage);
     }
     /**

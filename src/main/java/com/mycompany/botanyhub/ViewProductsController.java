@@ -1,19 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package com.mycompany.botanyhub.Controller;
+
+package com.mycompany.botanyhub;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.mycompany.botanyhub.App;
-import com.mycompany.botanyhub.DataHandler;
-import com.mycompany.botanyhub.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -24,6 +16,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class ViewProductsController implements Initializable {
 
+    // Product images
     @FXML private ImageView pruningShearsToolImage;
     @FXML private ImageView shovelToolImage;
     @FXML private ImageView wateringCanToolImage;
@@ -31,15 +24,9 @@ public class ViewProductsController implements Initializable {
     @FXML private ImageView papayaPlantImage;
     @FXML private ImageView bambooPlantImage;
 
-    @FXML private Label currentUserLabel;
-    private static String previousPage;
+    //@FXML private Label currentUserLabel;
+    private static String previousPage;     // Stores name of previous page
 
-    public static void setPreviousPage(String page) {
-        previousPage = page;
-    }
-    @FXML private void switchToMainMenu() throws Exception {
-        App.setRoot(previousPage);
-    }
 
     // Assigns clicked product details to viewIndividualProduct controller and switches to it
     @FXML private void handleImageClick(MouseEvent clickEvent) throws IOException {
@@ -50,9 +37,17 @@ public class ViewProductsController implements Initializable {
         App.setRoot("viewIndividualProduct");
     }
 
+
+    public static void setPreviousPage(String page) {
+        previousPage = page;
+    }
+    @FXML private void backButton() throws Exception {
+        App.setRoot(previousPage);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
+       // currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
 
         final String PRUNE_SHEARS_NAME = DataHandler.tools.get(0).getName();
         final String SHOVEL_NAME = DataHandler.tools.get(1).getName();

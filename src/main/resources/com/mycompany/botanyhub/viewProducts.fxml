@@ -7,11 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="ViewProducts" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.botanyhub.Controller.ViewProductsController">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="ViewProducts" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.botanyhub.ViewProductsController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <Button layoutX="269.0" layoutY="337.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
+            <Button layoutX="269.0" layoutY="337.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
             <ImageView fx:id="pruningShearsToolImage" fitHeight="150.0" fitWidth="255.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#handleImageClick" onTouchPressed="#switchToMainMenu" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/pruningShearsTool.jpg" />
