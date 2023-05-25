@@ -59,24 +59,28 @@ public class CreateAccountController implements Initializable {
      */
     private boolean isValidInput(String username, String password, ArrayList<? extends User> userList) {
         boolean isValid = true;
+        boolean usernameIsEmpty = username.isEmpty();
+        boolean usernameContainsSpacesOrQuotations = username.contains(" ") || username.contains("\"");
+        boolean usernameExists = UserUtils.usernameExists(username, userList);
+        boolean passwordIsNotValid = !UserUtils.isValidPassword(password);
 
-            if (username.isEmpty()) {
-                errorMessage.append("Username cannot be empty\n");
-                isValid = false;
-            }
-            if (username.contains(" ") || username.contains("\"")) {
-                errorMessage.append("Username cannot contain spaces or quotations\n");
-                isValid = false;
-            }
-            if (UserUtils.usernameExists(username, userList)) {
-                errorMessage.append("Username already exists\n");
-                isValid = false;
-            }
-            if (!UserUtils.isValidPassword(password)) {
-                errorMessage.append("Password cannot be empty or contain spaces\n");
-                isValid = false;
-            }
-        return isValid;
+        if (usernameIsEmpty) {
+            errorMessage.append("Username cannot be empty\n");
+            isValid = false;
+        }
+        if (usernameContainsSpacesOrQuotations) {
+            errorMessage.append("Username cannot contain spaces or quotations\n");
+            isValid = false;
+        }
+        if (usernameExists) {
+            errorMessage.append("Username already exists\n");
+            isValid = false;
+        }
+        if (passwordIsNotValid) {
+            errorMessage.append("Password cannot be empty or contain spaces\n");
+            isValid = false;
+        }
+    return isValid;
     }
 
     // Builds and returns new customer object

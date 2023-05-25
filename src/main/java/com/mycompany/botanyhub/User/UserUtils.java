@@ -35,27 +35,16 @@ public class UserUtils {
     }
 
     // Checks if a password is valid
-    public static boolean isValidPassword(String password) {
+    public static boolean isValidPassword(String inputtedPassword) {
         boolean isValid = true;
-        if (password.isEmpty()) {
+        if (inputtedPassword.isEmpty()) {
             isValid = false;
         }
-        if (password.contains(" ")) {
+
+        if (inputtedPassword.contains(" ")) {
             isValid = false;
         }
         return isValid;
     }
 
-    /*
-    public static ObservableList<String> showCart () {
-        final ArrayList<Product> PRODUCTS_IN_CART = DataHandler.loggedInUser.getCart();
-        return ProductUtils.getProductNamesAsObservableList(PRODUCTS_IN_CART);
-    }
-
-    public static ObservableList<String> showPurchaseHistory () {
-        final ArrayList<Product> PURCHASE_HISTORY = DataHandler.loggedInUser.getPurchaseHistory();
-        return ProductUtils.getProductNamesAsObservableList(PURCHASE_HISTORY);
-    }
-
-     */
 }
