@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 import com.mycompany.botanyhub.User.UserUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 /**
@@ -30,8 +33,14 @@ public class MainMenuController implements Initializable {
     @FXML private void logoutButton() throws Exception {
         final boolean USER_LOGGED_IN = DataHandler.loggedInUser != null;
         if (USER_LOGGED_IN) {
-            UserUtils.logout();
-            Utils.Text.showConfirmation("Logout successful");
+            Utils.Text.runIfConfirmedByUser (
+                    "Logout Confirmation",
+                    "Are you sure you want to logout?",
+                    "Ok to logout",
+                    () -> {
+                        UserUtils.logout();
+                        Utils.Text.showConfirmation("Logout successful");
+                    });
         } else {
             throw new Exception("Can't perform action:\n No user is currently logged in");
         }

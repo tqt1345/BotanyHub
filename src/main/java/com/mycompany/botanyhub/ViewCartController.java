@@ -48,22 +48,25 @@ public class ViewCartController implements Initializable {
     // Removes a product from logged-in user's cart
     @FXML private void removeProductButton() {
         try {
-            Customer customer;
+
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
-            customer = (Customer) DataHandler.loggedInUser;
-            // TODO refactor this
-            String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
-            Product product = ProductUtils.getProduct(selectedProduct, customer.getCart());
-            customer.getCart().remove(product);
-            productsInCartListView.getItems().remove(selectedProduct);
+            removeProduct();
             Utils.Text.showConfirmation("Successfully removed product from cart");
         } catch (Exception e) {
             Utils.Text.showError("Error while removing product from cart:\n " + e.getMessage());
         }
     }
 
+    private void removeProduct() {
+        Customer customer;
+        customer = (Customer) DataHandler.loggedInUser;
+        String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
+        Product product = ProductUtils.getProduct(selectedProduct, customer.getCart());
+        customer.getCart().remove(product);
+        productsInCartListView.getItems().remove(selectedProduct);
+    }
     // Takes user to the individual product page
     @FXML private void viewProductButton() {
         try {
