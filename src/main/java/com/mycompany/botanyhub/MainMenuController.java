@@ -73,6 +73,7 @@ public class MainMenuController implements Initializable {
                 () -> {
                     DataHandler.clearAllData();
                     DataHandler.initialiseProductData();
+                    Utils.Text.showConfirmation("Successfully cleared data");
                 });
     }
 

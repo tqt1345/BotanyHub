@@ -38,10 +38,10 @@ public class ViewCartController implements Initializable {
             final ArrayList<Product> CUSTOMER_CART = customer.getCart();
 
             for (Product product : CUSTOMER_CART) {
-                products.add(product.getName());
+                products.add(product.getName() + ", $" + product.getPrice());
             }
             productsInCartListView.setItems(products);
-            totalCostField.setText(Double.toString(customer.getTotalCostOfCart()));
+            totalCostField.setText("$" + customer.getTotalCostOfCart());
 
         } catch (Exception e) {
             Utils.Text.showError("Error while showing cart:\n " + e.getMessage());
@@ -51,44 +51,48 @@ public class ViewCartController implements Initializable {
     // Removes a product from logged-in user's cart
     @FXML private void removeProductButton() {
         try {
-
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
-            removeProduct();
+            Customer customer = (Customer) DataHandler.loggedInUser;
+            final Product SELECTED_PRODUCT = ProductUtils.getProduct(
+                    productsInCartListView.
+                            getSelectionModel().
+                            getSelectedItem(),
+                    DataHandler.products);
+            assert SELECTED_PRODUCT != null;
+            final String SELECTED_PRODUCT_NAME = SELECTED_PRODUCT.getName();
+
+            customer.removeProductFromCart(SELECTED_PRODUCT);
+            removeFromListView(SELECTED_PRODUCT_NAME);
             Utils.Text.showConfirmation("Successfully removed product from cart");
         } catch (Exception e) {
             Utils.Text.showError("Error while removing product from cart:\n " + e.getMessage());
         }
     }
 
-    private void removeProduct() {
-        Customer customer;
-        customer = (Customer) DataHandler.loggedInUser;
-        String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
-        Product product = ProductUtils.getProduct(selectedProduct, customer.getCart());
-        customer.removeProductFromCart(product);
-        productsInCartListView.getItems().remove(selectedProduct);
-    }
+    // TODO fix bug where selected product is null.
     // Takes user to the individual product page
     @FXML private void viewProductButton() {
         try {
-            Customer customer;
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
-            customer = (Customer) DataHandler.loggedInUser;
             final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().getSelectedItem() == null;
             if (NO_PRODUCT_SELECTED) {
                 Utils.Text.showError("Please select a product to view");
                 return;
             }
 
-            // TODO refactor this
-            String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem(); // get product listing from listview
-            Product product = ProductUtils.getProduct(selectedProduct, customer.getCart()); // get product object from listing
-            assert product != null;
-            ViewIndividualProductController.currentProductName = product.getName();
+            // TODO Bug: selected product is null: product name passed into getProduct() includes the price (it should just be the name)
+            final Product SELECTED_PRODUCT = ProductUtils.getProduct(
+                    productsInCartListView.
+                            getSelectionModel().
+                            getSelectedItem(),
+                    DataHandler.products);
+
+            assert SELECTED_PRODUCT != null;
+            ViewIndividualProductController.setCurrentProduct(SELECTED_PRODUCT);
             ViewIndividualProductController.setPreviousPage("viewCart");
             App.setRoot("viewIndividualProduct");
         } catch (Exception e) {
@@ -99,14 +103,22 @@ public class ViewCartController implements Initializable {
     // Makes a purchase, moving products in cart to purchase history.
     @FXML private void makePurchaseButton () {
         try {
-            Customer customer;
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
+            Customer customer;
             customer = (Customer) DataHandler.loggedInUser;
-            customer.makePurchase();
-            productsInCartListView.getItems().clear();
-            Utils.Text.showConfirmation("Successfully made purchase");
+
+            Utils.Text.runIfConfirmedByUser(
+                    "Purchase confirmation",
+                    "Are you sure you want to make this purchase?\n" +
+                            "Total cost of purchase: $" + customer.getTotalCostOfCart() + "\n",
+                    "Press Ok to proceed",
+                    () -> {
+                        customer.makePurchase();
+                        productsInCartListView.getItems().clear();
+                        Utils.Text.showConfirmation("Successfully made purchase");
+                    });
         } catch (Exception e) {
             Utils.Text.showError("Error while making purchase:\n " + e.getMessage());
         }
@@ -117,7 +129,6 @@ public class ViewCartController implements Initializable {
     - User is a customer?
     - Cart is empty?
      */
-    // TODO refactor this and other similar validation methods into one method somewhere maybe?
     private boolean isValid(User loggedInUser) {
         Customer customer;
 
@@ -141,6 +152,10 @@ public class ViewCartController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    private void removeFromListView(String productName) {
+        productsInCartListView.getItems().remove(productName);
     }
 
     public static void setPreviousPage(String page) {

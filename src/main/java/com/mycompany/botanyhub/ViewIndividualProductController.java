@@ -6,10 +6,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import com.mycompany.botanyhub.User.Customer;
 import com.mycompany.botanyhub.Product.Product;
-import com.mycompany.botanyhub.Product.ProductUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -18,14 +18,33 @@ import javafx.scene.control.TextArea;
  */
 public class ViewIndividualProductController implements Initializable {
 
-    @FXML private TextArea productDetailsTextArea;  // Displays product details
+    //@FXML private TextArea productDetailsTextArea;  // Displays product details
     public static String currentProductName;        // Holds name of current product
+    private static Product currentProduct;                 // Holds current product
     private static String previousPage;             // Holds the previous page FXML
 
-    private Product currentProduct;
+    @FXML private TextField productNameField;
+    @FXML private TextField productPriceField;
+    @FXML private TextArea productDescriptionArea;
 
-    // Sets current product
-    private void setProduct(String name) {
+
+    public static void setCurrentProduct(Product product) {
+        currentProduct = product;
+    }
+
+    private void setProductDetails(Product product) {
+        try {
+            productNameField.setText(product.getName());
+            productPriceField.setText("$" + product.getPrice());
+            productDescriptionArea.setText(product.getDescription());
+        } catch (Exception e) {
+            Utils.Text.showError("Error fetching product details: " + e.getMessage());
+        }
+    }
+
+    /*
+    // Sets current product details
+    private void setProductDetailsOld(String name) {
         try {
             currentProduct = ProductUtils.getProduct(name, DataHandler.products);
             assert currentProduct != null;
@@ -36,6 +55,8 @@ public class ViewIndividualProductController implements Initializable {
         }
     }
 
+
+     */
     // Adds current product to logged-in user's cart
     @FXML private void addToCart() {
         Customer customer;
@@ -60,7 +81,6 @@ public class ViewIndividualProductController implements Initializable {
         Utils.Text.showConfirmation("Successfully added product to cart");
     }
 
-
     public static void setPreviousPage(String page) {
         previousPage = page;
     }
@@ -72,7 +92,6 @@ public class ViewIndividualProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setProduct(currentProductName);
-
+        setProductDetails(currentProduct);
     }
 }

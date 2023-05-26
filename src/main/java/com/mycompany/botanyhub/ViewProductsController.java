@@ -4,6 +4,9 @@ package com.mycompany.botanyhub;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.mycompany.botanyhub.Product.Product;
+import com.mycompany.botanyhub.Product.ProductUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -30,17 +33,23 @@ public class ViewProductsController implements Initializable {
 
     // Assigns clicked product details to viewIndividualProduct controller and switches to it
     @FXML private void handleImageClick(MouseEvent clickEvent) throws IOException {
-        ImageView clickedImage = (ImageView) clickEvent.getSource();
-        final String CLICKED_PRODUCT_NAME = clickedImage.getId();
-        ViewIndividualProductController.currentProductName = CLICKED_PRODUCT_NAME;
-        Utils.Text.showConfirmation("Clicked on: " + CLICKED_PRODUCT_NAME);
-        App.setRoot("viewIndividualProduct");
-    }
+        try {
+            ImageView clickedImage = (ImageView) clickEvent.getSource();
+            final String CLICKED_PRODUCT_NAME = clickedImage.getId();
+            final Product CLICKED_PRODUCT_OBJECT = ProductUtils.getProduct(CLICKED_PRODUCT_NAME, DataHandler.products);
 
+            ViewIndividualProductController.setCurrentProduct(CLICKED_PRODUCT_OBJECT);
+            ViewIndividualProductController.setPreviousPage("viewProducts");
+            App.setRoot("viewIndividualProduct");
+        } catch (Exception e) {
+            Utils.Text.showError("Error fetching product details: " + e.getMessage());
+        }
+    }
 
     public static void setPreviousPage(String page) {
         previousPage = page;
     }
+
     @FXML private void backButton() throws Exception {
         App.setRoot(previousPage);
     }

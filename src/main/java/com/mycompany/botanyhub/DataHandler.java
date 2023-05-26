@@ -37,14 +37,14 @@ public class DataHandler {
    public static void initialiseProductData() {
 
       // Make tool products
-      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25));   // POS 0
-      tools.add(new Tool("Shovel", "A tool used for digging holes.", 50));                      // POS 1
-      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15));              // POS 2
+      tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25)); // POS 0
+      tools.add(new Tool("Shovel", "A tool used to dig holes in the ground.", 50));           // POS 1
+      tools.add(new Tool("Watering Can", "A tool used for watering plants.", 15));            // POS 2
 
       // Make plant products
-      plants.add(new Plant("Bonsai Tree", "A small tree grown in a pot.", 150));                // POS 0
-      plants.add(new Plant("Bamboo Plant", "tmp.", 20));                                        // POS 1
-      plants.add(new Plant("Papaya Plant", "tmp.", 10));                                        // POS 2
+      plants.add(new Plant("Bonsai Tree", "A miniature tree grown in a small pot.", 150));    // POS 0
+      plants.add(new Plant("Bamboo Plant", "A fast growing, tall plant.", 20));               // POS 1
+      plants.add(new Plant("Papaya Plant", "A fruit bearing tree.", 10));                     // POS 2
 
       // All products added to products list for easy access
       products.addAll(tools);
