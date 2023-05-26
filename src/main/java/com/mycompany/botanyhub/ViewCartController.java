@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 
 /**
@@ -24,22 +25,24 @@ public class ViewCartController implements Initializable {
 
     @FXML private ListView<String> productsInCartListView;  // Holds product details
     private static String previousPage;                     // Holds the previous page FXML
+    @FXML private TextField totalCostField;                 // Holds the total cost of products in cart
 
     // Shows products in logged-in user's cart
     @FXML private void showCartButton() {
         try {
-            Customer customer;
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
-
-            customer = (Customer) DataHandler.loggedInUser;
+            Customer customer = (Customer) DataHandler.loggedInUser;
             ObservableList<String> products = FXCollections.observableArrayList();
             final ArrayList<Product> CUSTOMER_CART = customer.getCart();
+
             for (Product product : CUSTOMER_CART) {
                 products.add(product.getName());
             }
             productsInCartListView.setItems(products);
+            totalCostField.setText(Double.toString(customer.getTotalCostOfCart()));
+
         } catch (Exception e) {
             Utils.Text.showError("Error while showing cart:\n " + e.getMessage());
         }
@@ -64,7 +67,7 @@ public class ViewCartController implements Initializable {
         customer = (Customer) DataHandler.loggedInUser;
         String selectedProduct = productsInCartListView.getSelectionModel().getSelectedItem();
         Product product = ProductUtils.getProduct(selectedProduct, customer.getCart());
-        customer.getCart().remove(product);
+        customer.removeProductFromCart(product);
         productsInCartListView.getItems().remove(selectedProduct);
     }
     // Takes user to the individual product page

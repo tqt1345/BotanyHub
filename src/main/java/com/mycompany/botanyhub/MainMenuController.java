@@ -7,9 +7,6 @@ import java.util.ResourceBundle;
 import com.mycompany.botanyhub.User.UserUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 /**
@@ -69,8 +66,14 @@ public class MainMenuController implements Initializable {
 
     // FOR TESTING
     @FXML private void clearDataButton() throws IOException {
-        DataHandler.clearAllData();
-        DataHandler.initialiseProductData();
+        Utils.Text.runIfConfirmedByUser (
+                "Clear Data Confirmation",
+                "This will wipe all program data. Are you sure?",
+                "Press Ok to proceed",
+                () -> {
+                    DataHandler.clearAllData();
+                    DataHandler.initialiseProductData();
+                });
     }
 
 

@@ -35,13 +35,16 @@ public class Customer extends User implements Serializable {
     }
 
     // Gets the total cost of all products in the user's cart
-    public double getTotalCost() {
-        return this.cart.getTotalCost();
+    public double getTotalCostOfCart() {
+        return this.cart.getTotalCostOfCart();
     }
 
     // Adds a product to the user's cart
     public void addProductToCart(Product product) {
         this.cart.addProductToCart(product);
+    }
+    public void removeProductFromCart(Product product) {
+        this.cart.removeProductFromCart(product);
     }
 
     // Returns the names of each product in the user's cart as an ObservableList
