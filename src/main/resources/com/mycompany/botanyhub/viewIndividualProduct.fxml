@@ -3,17 +3,38 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Product page" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.botanyhub.Controller.ViewIndividualProductController">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Product page" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.botanyhub.ViewIndividualProductController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
             <Button layoutX="358.0" layoutY="313.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
-            <Label fx:id="currentUserLabel" layoutX="461.0" layoutY="14.0" text="Logged in as" />
-            <TextArea fx:id="productDetailsTextArea" layoutX="199.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
             <Button layoutX="199.0" layoutY="313.0" mnemonicParsing="false" onAction="#addToCart" text="Add to Cart" />
+            <GridPane layoutX="117.0" layoutY="71.0" prefHeight="149.0" prefWidth="364.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Product name" />
+                  <TextField fx:id="productNameField" GridPane.columnIndex="1" />
+                  <Label text="Price" GridPane.rowIndex="1" />
+                  <TextField fx:id="productPriceField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Product Description" GridPane.rowIndex="2" />
+                  <TextArea fx:id="productDescriptionArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
    </content>

@@ -18,7 +18,7 @@ public class Cart implements Serializable {
         this.cart.add(product);
     }
 
-    public void removeProduct(Product product) {
+    public void removeProductFromCart(Product product) {
         this.cart.remove(product);
     }
 
@@ -30,7 +30,7 @@ public class Cart implements Serializable {
         return ProductUtils.getProductNamesAsObservableList(this.cart);
     }
 
-    public double getTotalCost () {
+    public double getTotalCostOfCart() {
         double total = 0;
         for (Product product : this.cart) {
             total += product.getPrice();

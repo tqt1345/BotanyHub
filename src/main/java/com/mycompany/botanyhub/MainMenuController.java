@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package com.mycompany.botanyhub.Controller;
+
+package com.mycompany.botanyhub;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.mycompany.botanyhub.App;
-import com.mycompany.botanyhub.DataHandler;
 import com.mycompany.botanyhub.User.UserUtils;
-import com.mycompany.botanyhub.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -37,8 +30,14 @@ public class MainMenuController implements Initializable {
     @FXML private void logoutButton() throws Exception {
         final boolean USER_LOGGED_IN = DataHandler.loggedInUser != null;
         if (USER_LOGGED_IN) {
-            UserUtils.logout();
-            Utils.Text.showConfirmation("Logout successful");
+            Utils.Text.runIfConfirmedByUser (
+                    "Logout Confirmation",
+                    "Are you sure you want to logout?",
+                    "Ok to logout",
+                    () -> {
+                        UserUtils.logout();
+                        Utils.Text.showConfirmation("Logout successful");
+                    });
         } else {
             throw new Exception("Can't perform action:\n No user is currently logged in");
         }
@@ -67,8 +66,15 @@ public class MainMenuController implements Initializable {
 
     // FOR TESTING
     @FXML private void clearDataButton() throws IOException {
-        DataHandler.clearAllData();
-        DataHandler.initialiseProductData();
+        Utils.Text.runIfConfirmedByUser (
+                "Clear Data Confirmation",
+                "This will wipe all program data. Are you sure?",
+                "Press Ok to proceed",
+                () -> {
+                    DataHandler.clearAllData();
+                    DataHandler.initialiseProductData();
+                    Utils.Text.showConfirmation("Successfully cleared data");
+                });
     }
 
 

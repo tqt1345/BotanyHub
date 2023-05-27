@@ -7,13 +7,14 @@ import java.util.List;
 
 public class ProductUtils {
 
-    public static Product getProduct (String inputtedName, List<? extends Product> products) {
+    public static Product getProduct (String inputtedName, List<? extends Product> products) throws Exception {
         for (Product product : products) {
             if (product.getName().equals(inputtedName)) {
                 return product;
             }
         }
-        return null;
+        throw new Exception(String.format("Error while getting product\n" +
+                "Product with name: %s not found inside inputted list", inputtedName));
     }
 
     public static ObservableList<String> getProductNamesAsObservableList (List<? extends Product> products) {
@@ -21,7 +22,6 @@ public class ProductUtils {
         for (Product product : products) {
             productNames.add(product.getName());
         }
-        return productNames;
+            return productNames;
     }
-
 }

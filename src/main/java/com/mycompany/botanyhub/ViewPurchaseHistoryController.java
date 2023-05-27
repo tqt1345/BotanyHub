@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package com.mycompany.botanyhub.Controller;
+
+package com.mycompany.botanyhub;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.mycompany.botanyhub.App;
-import com.mycompany.botanyhub.DataHandler;
 import com.mycompany.botanyhub.User.Customer;
 import com.mycompany.botanyhub.User.User;
-import com.mycompany.botanyhub.Utils;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,8 +18,8 @@ import javafx.scene.control.ListView;
 public class ViewPurchaseHistoryController implements Initializable {
 
     @FXML private ListView<String> purchaseHistoryListView; // Holds user's purchase history details
+    private static String previousPage;                     // Holds the previous page FXML
 
-    private static String previousPage;
     // Shows logged-in user's purchase history
     @FXML private void showPurchaseHistoryButton() {
         try {
@@ -68,12 +62,11 @@ public class ViewPurchaseHistoryController implements Initializable {
         previousPage = page;
     }
     @FXML
-    private void switchToMainMenu() throws Exception {
+    private void backButton() throws Exception {
         App.setRoot(previousPage);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 }
