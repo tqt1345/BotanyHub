@@ -38,7 +38,7 @@ public class ViewCartController implements Initializable {
             final ArrayList<Product> CUSTOMER_CART = customer.getCart();
 
             for (Product product : CUSTOMER_CART) {
-                products.add(product.getName() + ", $" + product.getPrice());
+                products.add(product.getName()); //+ ", $" + product.getPrice()
             }
             productsInCartListView.setItems(products);
             totalCostField.setText("$" + customer.getTotalCostOfCart());
