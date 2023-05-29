@@ -94,7 +94,6 @@ public class ViewCartController implements Initializable {
         App.setRoot("viewIndividualProduct");
     }
 
-
     // Makes a purchase, moving products in cart to purchase history.
     @FXML private void makePurchaseButton () {
         try {
@@ -113,6 +112,7 @@ public class ViewCartController implements Initializable {
             Utils.Text.runIfConfirmedByUser(
                     "Purchase confirmation",
                     "Are you sure you want to make this purchase?\n" +
+                            "This will purchase all items in your cart\n" +
                             "Total cost of purchase: $" + customer.getTotalCostOfCart() + "\n",
                     "Press Ok to proceed",
                     () -> {
