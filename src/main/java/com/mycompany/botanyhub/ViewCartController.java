@@ -68,7 +68,9 @@ public class ViewCartController implements Initializable {
                     () -> {
                         customer.removeProductFromCart(SELECTED_PRODUCT);
                         productsInCartListView.getItems().remove(SELECTED_LISTVIEW_INDEX);
+                        totalCostField.setText("$" + customer.getTotalCostOfCart());
                         Utils.Text.showConfirmation(String.format("Successfully removed %s from cart", SELECTED_PRODUCT.getName()));
+
                     });
         } catch (Exception e) {
             Utils.Text.showError("Error while removing product from cart:\n " + e.getMessage());

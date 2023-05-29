@@ -5,9 +5,9 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductUtils {
-
 
     public static Product getProduct (String inputtedName, ArrayList<? extends Product> inputtedProductList) throws Exception {
         return inputtedProductList.stream()
@@ -27,10 +27,13 @@ public class ProductUtils {
     }*/
 
     public static ObservableList<String> getProductNamesAsObservableList (List<? extends Product> products) {
-        ObservableList<String> productNames = FXCollections.observableArrayList();
+        /*ObservableList<String> productNames = FXCollections.observableArrayList();
         for (Product product : products) {
             productNames.add(product.getName());
         }
-            return productNames;
+            return productNames;*/
+        return products.stream()
+                .map(Product::getName)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
-}
+} // END OF ProductUtils class
