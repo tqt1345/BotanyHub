@@ -4,6 +4,9 @@ package com.mycompany.botanyhub;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import com.mycompany.botanyhub.Product.Product;
 import com.mycompany.botanyhub.Product.ProductUtils;
 import com.mycompany.botanyhub.User.Customer;
@@ -34,17 +37,14 @@ public class ViewCartController implements Initializable {
                 return;
             }
             Customer customer = (Customer) DataHandler.loggedInUser;
-            ObservableList<String> products = FXCollections.observableArrayList();
-            final ArrayList<Product> CUSTOMER_CART = customer.getCart();
-
-            for (Product product : CUSTOMER_CART) {
-                products.add(product.getName()); //+ ", $" + product.getPrice()
-            }
-            productsInCartListView.setItems(products);
+            ObservableList<String> cartDetails;
+            cartDetails = customer.getCart().stream()
+                    .map(product -> product.getName() + ", $" + product.getPrice())
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+            productsInCartListView.setItems(cartDetails);
             totalCostField.setText("$" + customer.getTotalCostOfCart());
-
-        } catch (Exception e) {
-            Utils.Text.showError("Error while showing cart:\n " + e.getMessage());
+        } catch(Exception e) {
+            Utils.Text.showError("Error getting cart details: " + e.getMessage());
         }
     }
 
@@ -54,18 +54,24 @@ public class ViewCartController implements Initializable {
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
+            final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().isEmpty();
+            if (NO_PRODUCT_SELECTED) {
+                Utils.Text.showError("Please select a product to remove");
+                return;
+            }
             Customer customer = (Customer) DataHandler.loggedInUser;
-            final Product SELECTED_PRODUCT = ProductUtils.getProduct(
-                    productsInCartListView.
-                            getSelectionModel().
-                            getSelectedItem(),
-                    DataHandler.products);
-            assert SELECTED_PRODUCT != null;
-            final String SELECTED_PRODUCT_NAME = SELECTED_PRODUCT.getName();
+            final Product SELECTED_PRODUCT = getSelectedProduct();
+            final int SELECTED_LISTVIEW_INDEX = productsInCartListView.getSelectionModel().getSelectedIndex();
 
-            customer.removeProductFromCart(SELECTED_PRODUCT);
-            removeFromListView(SELECTED_PRODUCT_NAME);
-            Utils.Text.showConfirmation("Successfully removed product from cart");
+            Utils.Text.runIfConfirmedByUser(
+                    "Remove product confirmation",
+                    "Are you sure you want to remove this product from your cart?\n",
+                    "Press Ok to proceed",
+                    () -> {
+                        customer.removeProductFromCart(SELECTED_PRODUCT);
+                        productsInCartListView.getItems().remove(SELECTED_LISTVIEW_INDEX);
+                        Utils.Text.showConfirmation(String.format("Successfully removed %s from cart", SELECTED_PRODUCT.getName()));
+                    });
         } catch (Exception e) {
             Utils.Text.showError("Error while removing product from cart:\n " + e.getMessage());
         }
@@ -73,31 +79,19 @@ public class ViewCartController implements Initializable {
 
     // TODO fix bug where selected product is null.
     // Takes user to the individual product page
-    @FXML private void viewProductButton() {
-        try {
-            if (!isValid(DataHandler.loggedInUser)) {
-                return;
-            }
-            final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().getSelectedItem() == null;
-            if (NO_PRODUCT_SELECTED) {
-                Utils.Text.showError("Please select a product to view");
-                return;
-            }
-
-            // TODO Bug: selected product is null: product name passed into getProduct() includes the price (it should just be the name)
-            final Product SELECTED_PRODUCT = ProductUtils.getProduct(
-                    productsInCartListView.
-                            getSelectionModel().
-                            getSelectedItem(),
-                    DataHandler.products);
-
-            assert SELECTED_PRODUCT != null;
-            ViewIndividualProductController.setCurrentProduct(SELECTED_PRODUCT);
-            ViewIndividualProductController.setPreviousPage("viewCart");
-            App.setRoot("viewIndividualProduct");
-        } catch (Exception e) {
-            Utils.Text.showError("Error while viewing product:\n " + e.getMessage());
+    @FXML private void viewProductButton() throws Exception {
+        if (!isValid(DataHandler.loggedInUser)) {
+            return;
         }
+        final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().isEmpty();
+        if (NO_PRODUCT_SELECTED) {
+            Utils.Text.showError("Please select a product to view");
+            return;
+        }
+        final Product SELECTED_PRODUCT = getSelectedProduct();
+        ViewIndividualProductController.setCurrentProduct(SELECTED_PRODUCT);
+        ViewIndividualProductController.setPreviousPage("viewCart");
+        App.setRoot("viewIndividualProduct");
     }
 
     // Makes a purchase, moving products in cart to purchase history.
@@ -106,12 +100,19 @@ public class ViewCartController implements Initializable {
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
+
+            final boolean NO_CART_ITEMS = productsInCartListView.getItems().isEmpty();
+            if(NO_CART_ITEMS) {
+                Utils.Text.showError("Please view cart before making a purchase");
+                return;
+            }
             Customer customer;
             customer = (Customer) DataHandler.loggedInUser;
 
             Utils.Text.runIfConfirmedByUser(
                     "Purchase confirmation",
                     "Are you sure you want to make this purchase?\n" +
+                            "This will purchase all items in your cart\n" +
                             "Total cost of purchase: $" + customer.getTotalCostOfCart() + "\n",
                     "Press Ok to proceed",
                     () -> {
@@ -154,8 +155,12 @@ public class ViewCartController implements Initializable {
         return true;
     }
 
-    private void removeFromListView(String productName) {
-        productsInCartListView.getItems().remove(productName);
+    private Product getSelectedProduct() throws Exception {
+        return ProductUtils.getProduct(
+                productsInCartListView.getSelectionModel()
+                        .getSelectedItem()
+                        .split(",")[0],
+                DataHandler.products);
     }
 
     public static void setPreviousPage(String page) {
