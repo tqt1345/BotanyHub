@@ -2,9 +2,7 @@
 package com.mycompany.botanyhub;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.mycompany.botanyhub.Product.Product;
@@ -33,7 +31,7 @@ public class ViewCartController implements Initializable {
     // Shows products in logged-in user's cart
     @FXML private void showCartButton() {
         try {
-            if (!isValid(DataHandler.loggedInUser)) {
+            if (!isValidUserStatus(DataHandler.loggedInUser)) {
                 return;
             }
             Customer customer = (Customer) DataHandler.loggedInUser;
@@ -51,7 +49,7 @@ public class ViewCartController implements Initializable {
     // Removes a product from logged-in user's cart
     @FXML private void removeProductButton() {
         try {
-            if (!isValid(DataHandler.loggedInUser)) {
+            if (!isValidUserStatus(DataHandler.loggedInUser)) {
                 return;
             }
             final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().isEmpty();
@@ -80,7 +78,7 @@ public class ViewCartController implements Initializable {
     // TODO fix bug where selected product is null.
     // Takes user to the individual product page
     @FXML private void viewProductButton() throws Exception {
-        if (!isValid(DataHandler.loggedInUser)) {
+        if (!isValidUserStatus(DataHandler.loggedInUser)) {
             return;
         }
         final boolean NO_PRODUCT_SELECTED = productsInCartListView.getSelectionModel().isEmpty();
@@ -97,7 +95,7 @@ public class ViewCartController implements Initializable {
     // Makes a purchase, moving products in cart to purchase history.
     @FXML private void makePurchaseButton () {
         try {
-            if (!isValid(DataHandler.loggedInUser)) {
+            if (!isValidUserStatus(DataHandler.loggedInUser)) {
                 return;
             }
 
@@ -130,7 +128,7 @@ public class ViewCartController implements Initializable {
     - User is a customer?
     - Cart is empty?
      */
-    private boolean isValid(User loggedInUser) {
+    private boolean isValidUserStatus(User loggedInUser) {
         Customer customer;
 
         final boolean NOT_LOGGED_IN = loggedInUser == null;
