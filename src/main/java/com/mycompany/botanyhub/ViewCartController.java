@@ -4,6 +4,9 @@ package com.mycompany.botanyhub;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import com.mycompany.botanyhub.Product.Product;
 import com.mycompany.botanyhub.Product.ProductUtils;
 import com.mycompany.botanyhub.User.Customer;
@@ -34,17 +37,13 @@ public class ViewCartController implements Initializable {
                 return;
             }
             Customer customer = (Customer) DataHandler.loggedInUser;
-            ObservableList<String> products = FXCollections.observableArrayList();
-            final ArrayList<Product> CUSTOMER_CART = customer.getCart();
-
-            for (Product product : CUSTOMER_CART) {
-                products.add(product.getName()); //+ ", $" + product.getPrice()
-            }
-            productsInCartListView.setItems(products);
-            totalCostField.setText("$" + customer.getTotalCostOfCart());
-
-        } catch (Exception e) {
-            Utils.Text.showError("Error while showing cart:\n " + e.getMessage());
+            ObservableList<String> cartDetails;
+            cartDetails = customer.getCart().stream()
+                    .map(product -> product.getName() + ", $" + product.getPrice())
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+            productsInCartListView.setItems(cartDetails);
+        } catch(Exception e) {
+            Utils.Text.showError("Error getting cart details: " + e.getMessage());
         }
     }
 
@@ -74,7 +73,7 @@ public class ViewCartController implements Initializable {
     // TODO fix bug where selected product is null.
     // Takes user to the individual product page
     @FXML private void viewProductButton() {
-        try {
+        /*try {
             if (!isValid(DataHandler.loggedInUser)) {
                 return;
             }
@@ -97,7 +96,9 @@ public class ViewCartController implements Initializable {
             App.setRoot("viewIndividualProduct");
         } catch (Exception e) {
             Utils.Text.showError("Error while viewing product:\n " + e.getMessage());
-        }
+        }*/
+
+
     }
 
     // Makes a purchase, moving products in cart to purchase history.
