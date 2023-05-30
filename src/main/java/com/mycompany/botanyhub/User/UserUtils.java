@@ -2,6 +2,8 @@ package com.mycompany.botanyhub.User;
 
 import com.mycompany.botanyhub.DataHandler;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserUtils {
 
@@ -14,7 +16,12 @@ public class UserUtils {
                 return;
             }
         }
-        throw new Exception("Invalid username or password");
+        //throw new Exception("Invalid username or password");
+
+       /* final boolean CREDENTIALS_MATCHED = users.stream()
+                .anyMatch(user -> user.getUsername().equals(inputtedUsername) && user.getPassword().equals(inputtedPassword));*/
+
+
     }
 
     // Logout the current user.
@@ -24,14 +31,19 @@ public class UserUtils {
 
     // Checks if a username exists
     public static boolean usernameExists(String usernameInput, ArrayList<? extends User> users) {
-        boolean exists = false;
+        /*boolean exists = false;
         for (User user : users) {
             final boolean USERNAME_EXISTS = usernameInput.equals(user.getUsername());
             if (USERNAME_EXISTS) {
                 exists = true;
             }
         }
-        return exists;
+        return exists;*/
+
+        return users.stream()
+                .map(User::getUsername)
+                .collect(Collectors.toList())
+                .contains(usernameInput);
     }
 
     // Checks if a password is valid
@@ -40,7 +52,6 @@ public class UserUtils {
         if (inputtedPassword.isEmpty()) {
             isValid = false;
         }
-
         if (inputtedPassword.contains(" ")) {
             isValid = false;
         }
