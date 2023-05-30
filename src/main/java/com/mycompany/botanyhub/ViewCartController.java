@@ -156,7 +156,7 @@ public class ViewCartController implements Initializable {
     }
 
     private Product getSelectedProduct() throws Exception {
-        return ProductUtils.getProduct(
+        return ProductUtils.getProductFromName(
                 productsInCartListView.getSelectionModel()
                         .getSelectedItem()
                         .split(",")[0],

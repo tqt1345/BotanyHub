@@ -31,10 +31,14 @@ public class Cart implements Serializable {
     }
 
     public double getTotalCostOfCart() {
-        double total = 0;
+        /*double total = 0;
         for (Product product : this.cart) {
             total += product.getPrice();
         }
-        return total;
+        return total;*/
+
+        return this.cart.stream()
+                        .mapToDouble(Product::getPrice)
+                        .sum();
     }
 }

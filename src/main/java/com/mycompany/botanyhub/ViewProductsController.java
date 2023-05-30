@@ -36,7 +36,7 @@ public class ViewProductsController implements Initializable {
         try {
             ImageView clickedImage = (ImageView) clickEvent.getSource();
             final String CLICKED_PRODUCT_NAME = clickedImage.getId();
-            final Product CLICKED_PRODUCT_OBJECT = ProductUtils.getProduct(CLICKED_PRODUCT_NAME, DataHandler.products);
+            final Product CLICKED_PRODUCT_OBJECT = ProductUtils.getProductFromName(CLICKED_PRODUCT_NAME, DataHandler.products);
 
             ViewIndividualProductController.setCurrentProduct(CLICKED_PRODUCT_OBJECT);
             ViewIndividualProductController.setPreviousPage("viewProducts");

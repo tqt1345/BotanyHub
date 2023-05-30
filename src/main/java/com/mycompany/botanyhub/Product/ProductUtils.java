@@ -9,9 +9,10 @@ import java.util.stream.Collectors;
 
 public class ProductUtils {
 
-    public static Product getProduct (String inputtedName, ArrayList<? extends Product> inputtedProductList) throws Exception {
+    public static Product getProductFromName(String inputtedName, ArrayList<? extends Product> inputtedProductList) throws Exception {
         return inputtedProductList.stream()
-                .filter(product -> product.getName().equals(inputtedName)).findFirst()
+                .filter(product -> product.getName().equals(inputtedName))
+                .findFirst()
                 .orElseThrow( () -> new Exception(String.format("Error while getting product\n" +
                         "Could not find product with name: %s", inputtedName)));
     }
