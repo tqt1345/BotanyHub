@@ -42,21 +42,6 @@ public class ViewIndividualProductController implements Initializable {
         }
     }
 
-    /*
-    // Sets current product details
-    private void setProductDetailsOld(String name) {
-        try {
-            currentProduct = ProductUtils.getProduct(name, DataHandler.products);
-            assert currentProduct != null;
-            productDetailsTextArea.setText(currentProduct.toString());
-
-        } catch (Exception e) {
-            Utils.Text.showError("Error fetching product details: " + e.getMessage());
-        }
-    }
-
-
-     */
     // Adds current product to logged-in user's cart
     @FXML private void addToCart() {
         Customer customer;
