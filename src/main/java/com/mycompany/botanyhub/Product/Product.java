@@ -1,6 +1,4 @@
 package com.mycompany.botanyhub.Product;
-
-
 import java.io.Serializable;
 
 // Product class handles manipulation of product objects

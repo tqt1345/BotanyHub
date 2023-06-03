@@ -1,5 +1,4 @@
 package com.mycompany.botanyhub.Product;
-
 import java.io.Serializable;
 
 // ProductInformation stores information related to individual products

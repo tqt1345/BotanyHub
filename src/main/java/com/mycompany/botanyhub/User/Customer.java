@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+// This class handles customer objects and associated
 public class Customer extends User implements Serializable {
 
     private final CustomerInformation customerInformation;

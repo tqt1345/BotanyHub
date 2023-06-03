@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+// This class represents the customer's cart and handles operations relating to it.
 public class Cart implements Serializable {
 
     ArrayList<Product> cart;

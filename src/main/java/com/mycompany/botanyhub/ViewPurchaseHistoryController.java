@@ -1,6 +1,5 @@
 
 package com.mycompany.botanyhub;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.mycompany.botanyhub.User.Customer;
@@ -10,11 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
-/**
- * FXML Controller class
- *
- * @author tqt13
- */
 public class ViewPurchaseHistoryController implements Initializable {
 
     @FXML private ListView<String> purchaseHistoryListView; // Holds user's purchase history details
