@@ -34,13 +34,18 @@ public class ViewCartController implements Initializable {
             if (!isValidUserStatus(DataHandler.loggedInUser)) {
                 return;
             }
+
             Customer customer = (Customer) DataHandler.loggedInUser;
             ObservableList<String> cartDetails;
-            cartDetails = customer.getCart().stream()
-                    .map(product -> product.getName() + ", $" + product.getPrice())
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+            cartDetails = customer.getCart()
+                        .stream()
+                        .map(product -> product.getName() + ", $" + product.getPrice())
+                        .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
             productsInCartListView.setItems(cartDetails);
             totalCostField.setText("$" + customer.getTotalCostOfCart());
+
         } catch(Exception e) {
             Utils.Text.showError("Error getting cart details: " + e.getMessage());
         }

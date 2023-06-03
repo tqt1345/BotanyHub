@@ -9,8 +9,9 @@ import java.util.stream.Collectors;
 
 public class ProductUtils {
 
-    public static Product getProductFromName(String inputtedName, ArrayList<? extends Product> inputtedProductList) throws Exception {
-            return inputtedProductList.stream()
+    public static Product getProductFromName(String inputtedName, ArrayList<? extends Product> products) throws Exception {
+        return products
+                .stream()
                 .filter(product -> product.getName().equals(inputtedName))
                 .findFirst()
                 .orElseThrow( () -> new Exception(String.format("Error while getting product\n" +
@@ -18,7 +19,8 @@ public class ProductUtils {
     }
 
     public static ObservableList<String> getProductNamesAsObservableList (List<? extends Product> products) {
-        return products.stream()
+        return products
+                .stream()
                 .map(Product::getName)
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }

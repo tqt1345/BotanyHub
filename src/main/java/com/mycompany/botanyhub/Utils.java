@@ -14,14 +14,14 @@ public class Utils {
         }
 
         // Alert takes a lambda expression to run if ok button is pressed.
-        public static void runIfConfirmedByUser(String title, String header, String content, Runnable onOkAction) {
+        public static void runIfConfirmedByUser(String title, String header, String content, Runnable lambda) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    onOkAction.run();
+                    lambda.run();
                 }
             });
         }
