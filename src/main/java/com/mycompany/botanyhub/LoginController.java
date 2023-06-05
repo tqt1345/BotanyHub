@@ -44,6 +44,7 @@ public class LoginController implements Initializable {
             Utils.Text.clearFields(inputFields);
         } catch (Exception e) {
             Utils.Text.showError(e.getMessage());
+            Utils.Text.clearFields(inputFields);
         }
     }
 
