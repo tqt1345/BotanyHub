@@ -1,6 +1,13 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls functionality creating new accounts
+ */
 
 package com.mycompany.botanyhub;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

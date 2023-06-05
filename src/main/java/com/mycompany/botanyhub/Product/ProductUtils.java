@@ -1,3 +1,12 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls various utility methods for Products
+ */
+
 package com.mycompany.botanyhub.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -5,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// This class holds utility methods relating to Product objects
 public class ProductUtils {
 
     // Returns a single product object from an inputted product name and list containing products

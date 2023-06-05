@@ -1,5 +1,13 @@
-package com.mycompany.botanyhub.User;
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
 
+This class holds user information
+ */
+
+package com.mycompany.botanyhub.User;
 import java.io.Serializable;
 
 public abstract class UserInformation implements Serializable {
@@ -10,7 +18,6 @@ public abstract class UserInformation implements Serializable {
         this.username = username;
         this.password = password;
     }
-
 
     public String getUsername() { return this.username; }
     public String getPassword() { return this.password; }

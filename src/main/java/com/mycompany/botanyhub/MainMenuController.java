@@ -1,6 +1,13 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls main menu functionality
+ */
 
 package com.mycompany.botanyhub;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +34,8 @@ public class MainMenuController implements Initializable {
         LoginController.setPreviousPage("mainMenu");
     }
 
-    @FXML private void logoutButton() throws Exception {
+    // Facilitates logout
+    @FXML private void logoutButton() {
         try {
             final boolean USER_LOGGED_IN = DataHandler.loggedInUser != null;
             if (USER_LOGGED_IN) {
@@ -47,7 +55,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    @FXML private void switchToViewProducts() throws IOException {
+    @FXML private void switchToViewProducts() {
         try {
             App.setRoot("viewProducts");
             ViewProductsController.setPreviousPage("mainMenu");
@@ -64,12 +72,12 @@ public class MainMenuController implements Initializable {
         App.setRoot("viewPurchaseHistory");
         ViewPurchaseHistoryController.setPreviousPage("mainMenu");
     }
-    @FXML private void exitButton() throws IOException {
+    @FXML private void exitButton() {
         App.exit();
     }
 
-    // FOR TESTING
-    @FXML private void clearDataButton() throws IOException {
+    // FOR TESTING: Clears all data
+    @FXML private void clearDataButton() {
         Utils.Text.runIfConfirmedByUser (
                 "Clear Data Confirmation",
                 "This will wipe all program data. Are you sure?",

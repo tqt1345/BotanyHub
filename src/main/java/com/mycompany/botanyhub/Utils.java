@@ -1,5 +1,13 @@
-package com.mycompany.botanyhub;
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
 
+This class controls various utility methods
+ */
+
+package com.mycompany.botanyhub;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
@@ -13,7 +21,7 @@ public class Utils {
             alert.showAndWait();
         }
 
-        // Alert takes a lambda expression to run if ok button is pressed.
+        // Displays an alert and takes a lambda expression to run if ok button is pressed.
         public static void runIfConfirmedByUser(String title, String header, String content, Runnable lambda) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(title);
@@ -38,6 +46,5 @@ public class Utils {
                 field.clear();
             }
         }
-    }
-
-}
+    } // End of Text class
+} // End of Utils class

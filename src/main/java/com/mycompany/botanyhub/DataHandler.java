@@ -1,5 +1,13 @@
-package com.mycompany.botanyhub;
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
 
+This class controls functionality for saving and loading data, user status, and initialization of product data.
+ */
+
+package com.mycompany.botanyhub;
 import com.mycompany.botanyhub.Product.Plant;
 import com.mycompany.botanyhub.Product.Product;
 import com.mycompany.botanyhub.Product.Tool;
@@ -10,12 +18,10 @@ import javafx.beans.property.StringProperty;
 import java.io.*;
 import java.util.ArrayList;
 
-
 public class DataHandler {
 
    // User Lists
    public static ArrayList<Customer> customers = new ArrayList<>();
-   // public static ArrayList<Administrator> administrators = new ArrayList<>();
 
    // User status
    public  static User loggedInUser; // currently logged-in user
@@ -33,9 +39,15 @@ public class DataHandler {
       loggedInUsername.set("Logged in as: " + username);
    }
 
+   // Clears current user status
+   public static void clearCurrentUser() {
+      loggedInUser = null;
+      loggedInUsername.set("Not Logged In");
+   }
+
    // Creates the catalogue of products
    public static void initialiseProductData() {
-// goofy ahh
+
       // Make tool products
       tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25)); // POS 0
       tools.add(new Tool("Shovel", "A tool used to dig holes in the ground.", 50));           // POS 1
@@ -59,7 +71,6 @@ public class DataHandler {
 
          // Write arrays to file
          output.writeObject(customers);
-         // output.writeObject(administrators);
          output.writeObject(tools);
          output.writeObject(plants);
          output.writeObject(products);
@@ -78,7 +89,6 @@ public class DataHandler {
 
          // Load arrays from file
          customers = (ArrayList<Customer>) input.readObject();
-         // administrators = (ArrayList<Administrator>) input.readObject();
          tools = (ArrayList<Tool>) input.readObject();
          plants = (ArrayList<Plant>) input.readObject();
          products = (ArrayList<Product>) input.readObject();
@@ -109,14 +119,6 @@ public class DataHandler {
     // Clears all user data from data.ser file
     public static void clearUserData() {
           customers.clear();
-          // administrators.clear();
           clearCurrentUser();
     }
-
-    // Clears current user status
-    public static void clearCurrentUser() {
-       loggedInUser = null;
-       loggedInUsername.set("Not Logged In");
-    }
-
 }

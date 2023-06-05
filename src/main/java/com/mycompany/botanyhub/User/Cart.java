@@ -1,12 +1,19 @@
-package com.mycompany.botanyhub.User;
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
 
+This class controls functionality cart objects
+ */
+
+package com.mycompany.botanyhub.User;
 import com.mycompany.botanyhub.Product.Product;
 import com.mycompany.botanyhub.Product.ProductUtils;
 import javafx.collections.ObservableList;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-// This class represents the customer's cart and handles operations relating to it.
 public class Cart implements Serializable {
 
     ArrayList<Product> cart;

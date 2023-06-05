@@ -1,6 +1,13 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls functionality for viewing individual product information.
+ */
 
 package com.mycompany.botanyhub;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,20 +25,21 @@ import javafx.scene.control.TextField;
  */
 public class ViewIndividualProductController implements Initializable {
 
-    //@FXML private TextArea productDetailsTextArea;  // Displays product details
-    public static String currentProductName;        // Holds name of current product
-    private static Product currentProduct;                 // Holds current product
-    private static String previousPage;             // Holds the previous page FXML
+    // Page navigation variables
+    private static Product currentProduct;
+    private static String previousPage;
 
+    // Information fields
     @FXML private TextField productNameField;
     @FXML private TextField productPriceField;
     @FXML private TextArea productDescriptionArea;
 
-
+    // Sets the current product to be viewed
     public static void setCurrentProduct(Product product) {
         currentProduct = product;
     }
 
+    // Displays the product details
     private void setProductDetails(Product product) {
         try {
             productNameField.setText(product.getName());
@@ -69,11 +77,9 @@ public class ViewIndividualProductController implements Initializable {
     public static void setPreviousPage(String page) {
         previousPage = page;
     }
-    // TODO should go back to previous page not hardcoded to viewProducts
     @FXML private void backButton() throws IOException {
         App.setRoot(previousPage);
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -1,9 +1,16 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls functionality for viewing a user's purchase history.
+ */
 
 package com.mycompany.botanyhub;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import com.mycompany.botanyhub.User.Customer;
 import com.mycompany.botanyhub.User.User;
 import javafx.collections.FXCollections;

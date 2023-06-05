@@ -1,10 +1,16 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls functionality displaying a user's cart.
+ */
 
 package com.mycompany.botanyhub;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
 import com.mycompany.botanyhub.Product.Product;
 import com.mycompany.botanyhub.Product.ProductUtils;
 import com.mycompany.botanyhub.User.Customer;
@@ -15,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
 
 /**
  * FXML Controller class
@@ -86,7 +91,6 @@ public class ViewCartController implements Initializable {
         }
     }
 
-    // TODO fix bug where selected product is null.
     // Takes user to the individual product page
     @FXML private void viewProductButton() throws Exception {
         if (!isValidUserStatus(DataHandler.loggedInUser)) {
@@ -169,8 +173,7 @@ public class ViewCartController implements Initializable {
         return ProductUtils.getProductFromName(
                 productsInCartListView.getSelectionModel()
                         .getSelectedItem()
-                        .split(",")[0],
-                DataHandler.products);
+                        .split(",")[0], DataHandler.products);
     }
 
     public static void setPreviousPage(String page) {

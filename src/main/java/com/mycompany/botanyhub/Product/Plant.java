@@ -2,9 +2,9 @@
 Programmer: Tarique Turnbull
 StudentID: 12177936
 Course: COIT11134 Object-Oriented Programming
-Assessment: Practical Assessment 2
+Assessment: Final Project
 
-This class controls functionality for adding clients
+This class controls functionality for Plant products
  */
 
 package com.mycompany.botanyhub.Product;

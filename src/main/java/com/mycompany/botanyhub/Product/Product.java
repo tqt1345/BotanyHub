@@ -1,7 +1,15 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls functionality for Products
+ */
+
 package com.mycompany.botanyhub.Product;
 import java.io.Serializable;
 
-// Product class handles manipulation of product objects
 public class Product implements Serializable {
     final private ProductInformation PRODUCT_INFORMATION;
 

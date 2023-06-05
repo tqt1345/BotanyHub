@@ -1,5 +1,13 @@
-package com.mycompany.botanyhub.User;
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
 
+This class controls functionality for Customer objects
+ */
+
+package com.mycompany.botanyhub.User;
 import com.mycompany.botanyhub.Product.Product;
 import javafx.collections.ObservableList;
 import java.io.Serializable;
@@ -70,11 +78,6 @@ public class Customer extends User implements Serializable {
     public ArrayList<Product> getPurchaseHistory() {
         return this.purchaseHistory.getPurchaseHistory();
     }
-
-    // Returns the names of each product in the user's purchase history as an ObservableList
-    /*public ObservableList<String> getProductNamesInPurchaseHistory() {
-        return this.purchaseHistory.getProductNamesInPurchaseHistory();
-    }*/
 
     // Displays user details
     @Override

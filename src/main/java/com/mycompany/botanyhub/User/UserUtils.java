@@ -1,5 +1,13 @@
-package com.mycompany.botanyhub.User;
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
 
+This class controls various utility methods relating to User objects
+ */
+
+package com.mycompany.botanyhub.User;
 import com.mycompany.botanyhub.DataHandler;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -22,7 +30,6 @@ public class UserUtils {
         }
     }
 
-
     // Logout the current user.
     public static void logout() {
         DataHandler.clearCurrentUser();
@@ -43,5 +50,4 @@ public class UserUtils {
                 || inputtedPassword.contains(" ")
                 || inputtedPassword.contains("\""));
     }
-
 } // END OF UserUtils class

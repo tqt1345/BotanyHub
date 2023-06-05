@@ -1,10 +1,16 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class controls functionality viewing products.
+ */
 
 package com.mycompany.botanyhub;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.mycompany.botanyhub.Product.Product;
 import com.mycompany.botanyhub.Product.ProductUtils;
 import javafx.fxml.FXML;
@@ -56,8 +62,8 @@ public class ViewProductsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);
 
+        // Assign product images with their respective names.
         final String PRUNE_SHEARS_NAME = DataHandler.tools.get(0).getName();
         final String SHOVEL_NAME = DataHandler.tools.get(1).getName();
         final String WATERING_CAN_NAME = DataHandler.tools.get(2).getName();

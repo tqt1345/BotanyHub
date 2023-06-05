@@ -1,7 +1,15 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
+
+This class holds information about a product.
+ */
+
 package com.mycompany.botanyhub.Product;
 import java.io.Serializable;
 
-// ProductInformation stores information related to individual products
 public class ProductInformation implements Serializable {
     private String name;
     private String description;
@@ -22,9 +30,4 @@ public class ProductInformation implements Serializable {
     public void setName(String name){this.name = name;}
     public void setDescription(String description){this.description = description;}
     public void setPrice(double price){this.price = price;}
-
-
-
-
-
 }

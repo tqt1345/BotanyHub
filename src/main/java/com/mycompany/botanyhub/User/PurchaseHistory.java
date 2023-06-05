@@ -1,10 +1,16 @@
-package com.mycompany.botanyhub.User;
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Final Project
 
+This class controls functionality for a customer's purchase history
+ */
+
+package com.mycompany.botanyhub.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import com.mycompany.botanyhub.Product.Product;
-import com.mycompany.botanyhub.Product.ProductUtils;
-import javafx.collections.ObservableList;
 
 public class PurchaseHistory implements Serializable {
     ArrayList<Product> purchaseHistory;
@@ -19,13 +25,5 @@ public class PurchaseHistory implements Serializable {
 
     public ArrayList<Product> getPurchaseHistory() {
         return this.purchaseHistory;
-    }
-
-    public void clearPurchaseHistory() {
-        this.purchaseHistory.clear();
-    }
-
-    public ObservableList<String> getProductNamesInPurchaseHistory() {
-        return ProductUtils.getProductNamesAsObservableList(this.purchaseHistory);
     }
 }
