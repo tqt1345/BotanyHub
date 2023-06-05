@@ -35,7 +35,7 @@ public class DataHandler {
 
    // Creates the catalogue of products
    public static void initialiseProductData() {
-
+// goofy ahh
       // Make tool products
       tools.add(new Tool("Pruning Shears", "A pair of shears used for pruning plants.", 25)); // POS 0
       tools.add(new Tool("Shovel", "A tool used to dig holes in the ground.", 50));           // POS 1
@@ -116,7 +116,7 @@ public class DataHandler {
     // Clears current user status
     public static void clearCurrentUser() {
        loggedInUser = null;
-       loggedInUsername.set("Current user: Not logged in");
+       loggedInUsername.set("Not Logged In");
     }
 
 }

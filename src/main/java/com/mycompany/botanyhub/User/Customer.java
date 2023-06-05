@@ -72,9 +72,9 @@ public class Customer extends User implements Serializable {
     }
 
     // Returns the names of each product in the user's purchase history as an ObservableList
-    public ObservableList<String> getProductNamesInPurchaseHistory() {
+    /*public ObservableList<String> getProductNamesInPurchaseHistory() {
         return this.purchaseHistory.getProductNamesInPurchaseHistory();
-    }
+    }*/
 
     // Displays user details
     @Override

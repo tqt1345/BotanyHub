@@ -33,10 +33,8 @@ public class App extends Application {
             stage.setOnCloseRequest(windowEvent -> {
                 exit();
             });
-
         } catch (Exception e) {
-            System.out.println(e);
-
+            Utils.Text.showError(e.getMessage());
         }
     }
 
@@ -54,8 +52,6 @@ public class App extends Application {
         Platform.exit();
 
     }
-
-
 
     public static void main(String[] args) {
         launch();

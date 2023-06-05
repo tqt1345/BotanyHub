@@ -28,18 +28,22 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML private void logoutButton() throws Exception {
-        final boolean USER_LOGGED_IN = DataHandler.loggedInUser != null;
-        if (USER_LOGGED_IN) {
-            Utils.Text.runIfConfirmedByUser (
-                    "Logout Confirmation",
-                    "Are you sure you want to logout?",
-                    "Ok to logout",
-                    () -> {
-                        UserUtils.logout();
-                        Utils.Text.showConfirmation("Logout successful");
-                    });
-        } else {
-            throw new Exception("Can't perform action:\n No user is currently logged in");
+        try {
+            final boolean USER_LOGGED_IN = DataHandler.loggedInUser != null;
+            if (USER_LOGGED_IN) {
+                Utils.Text.runIfConfirmedByUser (
+                        "Logout Confirmation",
+                        "Are you sure you want to logout?",
+                        "Ok to logout",
+                        () -> {
+                            UserUtils.logout();
+                            Utils.Text.showConfirmation("Logout successful");
+                        });
+            } else {
+                throw new Exception("Can't perform action:\n No user is currently logged in");
+            }
+        } catch (Exception e){
+            Utils.Text.showError(e.getMessage());
         }
     }
 
@@ -77,21 +81,6 @@ public class MainMenuController implements Initializable {
                 });
     }
 
-
-    // TESTING IMAGE PATHS
-    @FXML private void testButton () throws IOException {
-        /*
-        StringBuilder sb = new StringBuilder();
-        for (Product product : DataHandler.products) {
-            sb.append(product.getImagePath());
-            sb.append("\n");
-        }
-
-
-        Utils.Text.showConfirmation(sb.toString());
-
-         */
-    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         currentUserLabel.textProperty().bind(DataHandler.loggedInUsername);

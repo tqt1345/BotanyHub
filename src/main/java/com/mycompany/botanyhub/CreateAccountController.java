@@ -32,9 +32,14 @@ public class CreateAccountController implements Initializable {
     // Submit button creates a new user
     @FXML private void submitButton () {
         try {
+            final boolean LOGGED_IN = DataHandler.loggedInUser != null;
+            if (LOGGED_IN) {
+                Utils.Text.showError("Please logout before creating a new account.");
+                return;
+            }
+
             final String USERNAME = usernameField.getText();
             final String PASSWORD = passwordField.getText();
-
             if (isValidInput(USERNAME, PASSWORD, DataHandler.customers)) {
                 Customer newCustomer = makeCustomer(USERNAME, PASSWORD);
                 DataHandler.customers.add(newCustomer);

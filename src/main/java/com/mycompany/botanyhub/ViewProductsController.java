@@ -62,8 +62,8 @@ public class ViewProductsController implements Initializable {
         final String SHOVEL_NAME = DataHandler.tools.get(1).getName();
         final String WATERING_CAN_NAME = DataHandler.tools.get(2).getName();
         final String BONSAI_TREE_NAME = DataHandler.plants.get(0).getName();
-        final String PAPAYA_TREE_NAME = DataHandler.plants.get(1).getName();
-        final String BAMBOO_PLANT_NAME = DataHandler.plants.get(2).getName();
+        final String PAPAYA_TREE_NAME = DataHandler.plants.get(2).getName();
+        final String BAMBOO_PLANT_NAME = DataHandler.plants.get(1).getName();
 
         pruningShearsToolImage.setId(PRUNE_SHEARS_NAME);
         shovelToolImage.setId(SHOVEL_NAME);

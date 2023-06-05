@@ -2,8 +2,11 @@
 package com.mycompany.botanyhub;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import com.mycompany.botanyhub.User.Customer;
 import com.mycompany.botanyhub.User.User;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +26,11 @@ public class ViewPurchaseHistoryController implements Initializable {
             }
             customer = (Customer) DataHandler.loggedInUser;
             // Assign the logged-in user's purchase history to be displayed
-            final ObservableList<String> PURCHASE_HISTORY = customer.getProductNamesInPurchaseHistory();
+            final ObservableList<String> PURCHASE_HISTORY
+                    = customer.getPurchaseHistory()
+                    .stream()
+                    .map(product -> product.getName() + ", $" + product.getPrice() + ", " + product.getDescription())
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
             purchaseHistoryListView.setItems(PURCHASE_HISTORY);
         } catch (Exception e) {
             Utils.Text.showError("Error while showing purchase history:\n " + e.getMessage());

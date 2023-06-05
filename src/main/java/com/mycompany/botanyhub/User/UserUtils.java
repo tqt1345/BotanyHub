@@ -2,26 +2,30 @@ package com.mycompany.botanyhub.User;
 
 import com.mycompany.botanyhub.DataHandler;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserUtils {
 
     // Login the user if credentials match.
     public static void login(String inputtedUsername, String inputtedPassword, ArrayList<? extends User> users) throws Exception {
-        users
+        Optional<? extends User> foundUser = users
             .stream()
             .filter(user -> user.getUsername().equals(inputtedUsername) && user.getPassword().equals(inputtedPassword))
-            .findFirst()
-            .ifPresent(user -> DataHandler.setUserStatus(user, inputtedUsername));
-        throw new Exception("Invalid username or password");
+            .findFirst();
+
+        if (foundUser.isPresent()) {
+            DataHandler.setUserStatus(foundUser.get(), foundUser.get().getUsername());
+        } else {
+            throw new Exception("Error while logging in\n" +
+                    "Invalid username or password");
+        }
     }
 
 
     // Logout the current user.
     public static void logout() {
-        DataHandler.setUserStatus(null, "Not logged in");
+        DataHandler.clearCurrentUser();
     }
 
     // Checks if a username exists
@@ -35,7 +39,9 @@ public class UserUtils {
 
     // Checks if a password is valid
     public static boolean isValidPassword(String inputtedPassword) {
-        return !(inputtedPassword.isEmpty() || inputtedPassword.contains(" "));
+        return !(inputtedPassword.isEmpty()
+                || inputtedPassword.contains(" ")
+                || inputtedPassword.contains("\""));
     }
 
 } // END OF UserUtils class
