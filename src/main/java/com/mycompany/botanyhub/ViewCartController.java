@@ -78,12 +78,7 @@ public class ViewCartController implements Initializable {
                     () -> {
                         customer.removeProductFromCart(SELECTED_PRODUCT);
                         productsInCartListView.getItems().remove(SELECTED_LISTVIEW_INDEX);
-                        //totalCostField.setText("$" + customer.getTotalCostOfCart());
-                        if (customer.getCart().isEmpty()) {
-                            totalCostField.clear();
-                        } else {
-                            totalCostField.setText("$" + customer.getTotalCostOfCart());
-                        }
+                        totalCostField.setText(customer.getCart().isEmpty() ? "" : "$" + customer.getTotalCostOfCart());
                         Utils.Text.showConfirmation(String.format("Successfully removed %s from cart", SELECTED_PRODUCT.getName()));
                     });
         } catch (Exception e) {
