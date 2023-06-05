@@ -17,17 +17,12 @@ public class UserUtils {
 
     // Login the user if credentials match.
     public static void login(String inputtedUsername, String inputtedPassword, ArrayList<? extends User> users) throws Exception {
-        Optional<? extends User> foundUser = users
-            .stream()
-            .filter(user -> user.getUsername().equals(inputtedUsername) && user.getPassword().equals(inputtedPassword))
-            .findFirst();
-
-        if (foundUser.isPresent()) {
-            DataHandler.setUserStatus(foundUser.get(), foundUser.get().getUsername());
-        } else {
-            throw new Exception("Error while logging in\n" +
-                    "Invalid username or password");
-        }
+        User foundUser = users
+                .stream()
+                .filter(user -> user.getUsername().equals(inputtedUsername) && user.getPassword().equals(inputtedPassword))
+                .findFirst()
+                .orElseThrow( () -> new RuntimeException("Invalid username or password"));
+        DataHandler.setUserStatus(foundUser, foundUser.getUsername());
     }
 
     // Logout the current user.
