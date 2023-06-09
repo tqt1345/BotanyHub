@@ -12,6 +12,7 @@ import com.mycompany.botanyhub.Product.Product;
 import javafx.collections.ObservableList;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 // This class handles customer objects and associated
@@ -66,12 +67,8 @@ public class Customer extends User implements Serializable {
 
     // Removes all products in the user's cart and adds them to the user's purchase history
     public void makePurchase() {
-        Iterator<Product> iterator = this.cart.getCart().iterator();
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            this.purchaseHistory.addProduct(product);
-            iterator.remove();
-        }
+        this.purchaseHistory.getPurchaseHistory().addAll(this.cart.getCart());
+        this.cart.getCart().clear();
     }
 
     // Returns the user's purchase history as an ArrayList of products
